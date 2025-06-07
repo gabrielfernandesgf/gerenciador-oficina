@@ -1,5 +1,6 @@
 package com.PI.AutoGynService.service;
 
+import com.PI.AutoGynService.dto.FuncionarioDTO;
 import com.PI.AutoGynService.entity.Funcionario;
 import com.PI.AutoGynService.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class ServiceFuncionario {
     public List<Funcionario> findAll(){
         return funcionarioRepository.findAll();
     }
-    public Funcionario update(Funcionario funcionario, Long id){
+    public Funcionario update(FuncionarioDTO funcionario, Long id){
         Funcionario funcionario1 = funcionarioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Funcionário não encontrado com o ID: " + id));
 

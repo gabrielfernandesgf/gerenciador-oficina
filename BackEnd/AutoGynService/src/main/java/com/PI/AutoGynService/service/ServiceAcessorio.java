@@ -1,6 +1,7 @@
 package com.PI.AutoGynService.service;
 
 
+import com.PI.AutoGynService.dto.AcessorioDTO;
 import com.PI.AutoGynService.entity.Acessorio;
 import com.PI.AutoGynService.repository.AcessorioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class ServiceAcessorio {
         return acessorioRepository.findAll();
     }
 
-    public Acessorio updateAcessorio(Acessorio acessorio, Long id){
+    public Acessorio updateAcessorio(AcessorioDTO acessorio, Long id){
         Acessorio acessorio1 = acessorioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Acessório não encontrado com o ID: " + id));
         if(acessorio.getDescricao() != null){

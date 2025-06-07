@@ -1,5 +1,6 @@
 package com.PI.AutoGynService.service;
 ;
+import com.PI.AutoGynService.dto.PessoaFisicaDTO;
 import com.PI.AutoGynService.entity.PessoaFisica;
 import com.PI.AutoGynService.repository.PecaSubstituirRepository;
 import com.PI.AutoGynService.repository.PessoaFisicaRepository;
@@ -24,7 +25,7 @@ public class ServicePessoaFisica {
     public List<PessoaFisica> findAll(){
         return pessoaFisicaRepository.findAll();
     }
-    public PessoaFisica update(PessoaFisica pessoaFisica, Long id) {
+    public PessoaFisica update(PessoaFisicaDTO pessoaFisica, Long id) {
         PessoaFisica pessoaFisica1 = pessoaFisicaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Peça à substituir não encontrada com o ID: " + id));
 

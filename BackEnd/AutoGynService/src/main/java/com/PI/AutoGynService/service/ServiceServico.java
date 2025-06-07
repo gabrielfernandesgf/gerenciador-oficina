@@ -1,5 +1,6 @@
 package com.PI.AutoGynService.service;
 
+import com.PI.AutoGynService.dto.ServicoDTO;
 import com.PI.AutoGynService.entity.Servico;
 import com.PI.AutoGynService.repository.ServicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class ServiceServico {
         return servicoRepository.findAll();
     }
 
-    public Servico upadate(Servico servico, Long id){
+    public Servico upadate(ServicoDTO servico, Long id){
         Servico servico1 = servicoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Serviço não encontrado com o ID: " + id));
 

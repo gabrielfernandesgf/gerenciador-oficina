@@ -1,5 +1,6 @@
 package com.PI.AutoGynService.service;
 
+import com.PI.AutoGynService.dto.PecaSubstituirDTO;
 import com.PI.AutoGynService.entity.Peca;
 import com.PI.AutoGynService.entity.PecaSubstituir;
 import com.PI.AutoGynService.repository.PecaRepository;
@@ -25,7 +26,7 @@ public class ServicePecaSubstituir {
     public List<PecaSubstituir> findAll(){
         return pecaSubstituirRepository.findAll();
     }
-    public PecaSubstituir update(PecaSubstituir pecaSubstituir, Long id) {
+    public PecaSubstituir update(PecaSubstituirDTO pecaSubstituir, Long id) {
         PecaSubstituir pecaSubstituir1 = pecaSubstituirRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Peça à substituir não encontrada com o ID: " + id));
 

@@ -1,5 +1,6 @@
 package com.PI.AutoGynService.service;
 
+import com.PI.AutoGynService.dto.ServicoExecutadoDTO;
 import com.PI.AutoGynService.entity.Propriedade;
 import com.PI.AutoGynService.entity.ServicoExecutado;
 import com.PI.AutoGynService.repository.ServicoExecutadoRepository;
@@ -28,7 +29,7 @@ public class ServiceServicoExecutado {
         return servicoExecutadoRepository.findAll();
     }
 
-    public ServicoExecutado update(ServicoExecutado servicoExecutado, Long id) {
+    public ServicoExecutado update(ServicoExecutadoDTO servicoExecutado, Long id) {
         ServicoExecutado servicoExecutado1 = servicoExecutadoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Serviço executado não encontrado com o ID: " + id));
 

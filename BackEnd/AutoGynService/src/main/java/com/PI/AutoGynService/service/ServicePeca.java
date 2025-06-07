@@ -1,5 +1,6 @@
 package com.PI.AutoGynService.service;
 
+import com.PI.AutoGynService.dto.PecaDTO;
 import com.PI.AutoGynService.entity.Oficina;
 import com.PI.AutoGynService.entity.Peca;
 import com.PI.AutoGynService.repository.PecaRepository;
@@ -24,7 +25,7 @@ public class ServicePeca {
     public List<Peca> findAll(){
         return pecaRepository.findAll();
     }
-    public Peca update(Peca peca, Long id){
+    public Peca update(PecaDTO peca, Long id){
         Peca peca1 = pecaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Peça não encontrada com o ID: " + id));
 

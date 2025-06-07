@@ -1,5 +1,6 @@
 package com.PI.AutoGynService.service;
 
+import com.PI.AutoGynService.dto.MarcaDTO;
 import com.PI.AutoGynService.entity.Marca;
 import com.PI.AutoGynService.repository.MarcaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class ServiceMarca {
     public List<Marca> findAll(){
         return marcaRepository.findAll();
     }
-    public Marca update(Marca marca, Long id){
+    public Marca update(MarcaDTO marca, Long id){
         Marca marca1 = marcaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Marca não encontrada com o ID: " + id));
 

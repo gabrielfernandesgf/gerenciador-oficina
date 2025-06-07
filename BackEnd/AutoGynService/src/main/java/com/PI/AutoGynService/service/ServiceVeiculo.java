@@ -1,5 +1,6 @@
 package com.PI.AutoGynService.service;
 
+import com.PI.AutoGynService.dto.VeiculoDTO;
 import com.PI.AutoGynService.entity.Veiculo;
 import com.PI.AutoGynService.repository.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class ServiceVeiculo {
         return veiculoRepository.findAll();
     }
 
-    public Veiculo save(Veiculo veiculo, String placa){
+    public Veiculo save(VeiculoDTO veiculo, String placa){
         Veiculo veiculo1 = veiculoRepository.findByPlaca(placa)
                 .orElseThrow(() -> new RuntimeException("Veiculo não encontrado com a placa: " + placa));
 

@@ -1,6 +1,7 @@
-package com.PI.AutoGynService.entity;
+package com.PI.AutoGynService.dto;
 
-public enum Status {
+public enum StatusDTO {
+
     ORCAMENTO,
     APROVADO,
     EXECUCAO,

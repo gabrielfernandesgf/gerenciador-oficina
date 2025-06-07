@@ -1,5 +1,6 @@
 package com.PI.AutoGynService.service;
 
+import com.PI.AutoGynService.dto.ClienteDTO;
 import com.PI.AutoGynService.entity.Cliente;
 import com.PI.AutoGynService.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class ServiceCliente {
         return clienteRepository.findAll();
     }
 
-    public Cliente update(Cliente cliente, Long id){
+    public Cliente update(ClienteDTO cliente, Long id){
         Cliente cliente1 = clienteRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado com o ID: " + id));
 

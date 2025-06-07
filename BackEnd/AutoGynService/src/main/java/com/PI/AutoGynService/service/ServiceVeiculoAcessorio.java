@@ -1,5 +1,6 @@
 package com.PI.AutoGynService.service;
 
+import com.PI.AutoGynService.dto.VeiculoAcessorioDTO;
 import com.PI.AutoGynService.entity.VeiculoAcessorio;
 import com.PI.AutoGynService.repository.VeiculoAcessorioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class ServiceVeiculoAcessorio {
         return veiculoAcessorioRepository.findAll();
     }
 
-    public VeiculoAcessorio update(VeiculoAcessorio veiculoAcessorio, Long id){
+    public VeiculoAcessorio update(VeiculoAcessorioDTO veiculoAcessorio, Long id){
         VeiculoAcessorio veiculoAcessorio1 = veiculoAcessorioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Acessorio não encontrado com a placa: " + id));
 

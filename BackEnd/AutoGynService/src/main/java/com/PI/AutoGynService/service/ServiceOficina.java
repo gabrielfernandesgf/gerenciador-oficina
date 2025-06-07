@@ -1,5 +1,6 @@
 package com.PI.AutoGynService.service;
 
+import com.PI.AutoGynService.dto.OficinaDTO;
 import com.PI.AutoGynService.entity.Modelo;
 import com.PI.AutoGynService.entity.Oficina;
 import com.PI.AutoGynService.repository.OficinaRepository;
@@ -26,7 +27,7 @@ public class ServiceOficina {
     public List<Oficina> findAll(){
         return oficinaRepository.findAll();
     }
-    public Oficina update(Oficina oficina, Long id) {
+    public Oficina update(OficinaDTO oficina, Long id) {
         Oficina oficina1 = oficinaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("OS não encontrado com o ID: " + id));
 
