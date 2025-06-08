@@ -1,4 +1,4 @@
-package com.PI.AutoGynService.dto;
+package com.PI.AutoGynService.entity.dto;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -40,7 +40,7 @@ public class PessoaFisicaDTO extends ClienteDTO
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        com.PI.AutoGynService.dto.PessoaFisicaDTO that = (com.PI.AutoGynService.dto.PessoaFisicaDTO) o;
+        PessoaFisicaDTO that = (PessoaFisicaDTO) o;
         return Objects.equals(cpf, that.cpf) && Objects.equals(dataDeNascimento, that.dataDeNascimento);
     }
 

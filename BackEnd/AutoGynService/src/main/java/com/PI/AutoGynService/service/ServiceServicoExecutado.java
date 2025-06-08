@@ -1,7 +1,6 @@
 package com.PI.AutoGynService.service;
 
-import com.PI.AutoGynService.dto.ServicoExecutadoDTO;
-import com.PI.AutoGynService.entity.Propriedade;
+import com.PI.AutoGynService.entity.dto.ServicoExecutadoDTO;
 import com.PI.AutoGynService.entity.ServicoExecutado;
 import com.PI.AutoGynService.repository.ServicoExecutadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +10,11 @@ import java.util.List;
 
 @Service
 public class ServiceServicoExecutado {
-
     @Autowired
     ServicoExecutadoRepository servicoExecutadoRepository;
 
     public void save(ServicoExecutado servicoExecutado) {
         servicoExecutadoRepository.save(servicoExecutado);
-
     }
 
     public ServicoExecutado findById(Long id) {
@@ -60,6 +57,7 @@ public class ServiceServicoExecutado {
         if (servicoExecutado.getValorUnitario() != null) {
             servicoExecutado1.setValorUnitario(servicoExecutado.getValorUnitario());
         }
+
         return servicoExecutadoRepository.save(servicoExecutado1);
     }
 }

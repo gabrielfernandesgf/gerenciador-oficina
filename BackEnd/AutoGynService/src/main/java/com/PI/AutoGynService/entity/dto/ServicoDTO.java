@@ -1,10 +1,8 @@
-package com.PI.AutoGynService.dto;
-
-import com.PI.AutoGynService.entity.Marca;
+package com.PI.AutoGynService.entity.dto;
 
 import java.util.Objects;
 
-public class ModeloDTO {
+public class ServicoDTO {
 
     private Long id;
 
@@ -12,16 +10,16 @@ public class ModeloDTO {
 
     private String descricao;
 
-    private Marca marca;
+    private Double valorUnitario;
 
-    public ModeloDTO() {
+    public ServicoDTO() {
     }
 
-    public ModeloDTO(Long id, String nome, String descricao, Marca marca) {
+    public ServicoDTO(Long id, String nome, String descricao, Double valorUnitario) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
-        this.marca = marca;
+        this.valorUnitario = valorUnitario;
     }
 
     public Long getId() {
@@ -48,34 +46,34 @@ public class ModeloDTO {
         this.descricao = descricao;
     }
 
-    public Marca getMarca() {
-        return marca;
+    public Double getValorUnitario() {
+        return valorUnitario;
     }
 
-    public void setMarca(Marca marca) {
-        this.marca = marca;
+    public void setValorUnitario(Double valorUnitario) {
+        this.valorUnitario = valorUnitario;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ModeloDTO modelo = (com.PI.AutoGynService.dto.ModeloDTO) o;
-        return Objects.equals(id, modelo.id) && Objects.equals(nome, modelo.nome) && Objects.equals(descricao, modelo.descricao) && Objects.equals(marca, modelo.marca);
+        ServicoDTO servico = (ServicoDTO) o;
+        return Objects.equals(id, servico.id) && Objects.equals(nome, servico.nome) && Objects.equals(descricao, servico.descricao) && Objects.equals(valorUnitario, servico.valorUnitario);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, descricao, marca);
+        return Objects.hash(id, nome, descricao, valorUnitario);
     }
 
     @Override
     public String toString() {
-        return "Modelo{" +
+        return "Servico{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
-                ", marca=" + marca +
+                ", valorUnitario=" + valorUnitario +
                 '}';
     }
 }

@@ -1,6 +1,6 @@
 package com.PI.AutoGynService.service;
 
-import com.PI.AutoGynService.dto.VeiculoDTO;
+import com.PI.AutoGynService.entity.dto.VeiculoDTO;
 import com.PI.AutoGynService.entity.Veiculo;
 import com.PI.AutoGynService.repository.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import java.util.List;
 
 @Service
 public class ServiceVeiculo {
-
     @Autowired
     VeiculoRepository veiculoRepository;
 
@@ -18,7 +17,7 @@ public class ServiceVeiculo {
         veiculoRepository.save(veiculo);
     }
 
-    public Veiculo findById(String placa){
+    public Veiculo findByPlaca(String placa){
         return veiculoRepository.findByPlaca(placa)
                 .orElseThrow(() -> new RuntimeException("Veiculo não encontrado com a placa: " + placa));
     }
@@ -27,7 +26,7 @@ public class ServiceVeiculo {
         return veiculoRepository.findAll();
     }
 
-    public Veiculo save(VeiculoDTO veiculo, String placa){
+    public Veiculo update(VeiculoDTO veiculo, String placa){
         Veiculo veiculo1 = veiculoRepository.findByPlaca(placa)
                 .orElseThrow(() -> new RuntimeException("Veiculo não encontrado com a placa: " + placa));
 
@@ -55,6 +54,7 @@ public class ServiceVeiculo {
         if(veiculo.getRenavan() != null){
             veiculo1.setRenavan(veiculo.getRenavan());
         }
+
         return veiculoRepository.save(veiculo1);
     }
 }

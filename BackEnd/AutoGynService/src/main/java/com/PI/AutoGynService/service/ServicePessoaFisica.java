@@ -1,8 +1,7 @@
 package com.PI.AutoGynService.service;
-;
-import com.PI.AutoGynService.dto.PessoaFisicaDTO;
+
+import com.PI.AutoGynService.entity.dto.PessoaFisicaDTO;
 import com.PI.AutoGynService.entity.PessoaFisica;
-import com.PI.AutoGynService.repository.PecaSubstituirRepository;
 import com.PI.AutoGynService.repository.PessoaFisicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,23 +10,25 @@ import java.util.List;
 
 @Service
 public class ServicePessoaFisica {
-
     @Autowired
     PessoaFisicaRepository pessoaFisicaRepository;
 
     public void save(PessoaFisica pessoaFisica){
         pessoaFisicaRepository.save(pessoaFisica);
     }
+
     public PessoaFisica findById(Long id){
         return pessoaFisicaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Pessoa à substituir não encontrada com o ID: " + id));
+                .orElseThrow(() -> new RuntimeException("Pessoa não encontrada com o ID: " + id));
     }
+
     public List<PessoaFisica> findAll(){
         return pessoaFisicaRepository.findAll();
     }
+
     public PessoaFisica update(PessoaFisicaDTO pessoaFisica, Long id) {
         PessoaFisica pessoaFisica1 = pessoaFisicaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Peça à substituir não encontrada com o ID: " + id));
+                .orElseThrow(() -> new RuntimeException("Pessoa não encontrada com o ID: " + id));
 
         if (pessoaFisica.getCpf() != null) {
             pessoaFisica1.setCpf(pessoaFisica.getCpf());
@@ -52,6 +53,5 @@ public class ServicePessoaFisica {
         }
 
         return pessoaFisicaRepository.save(pessoaFisica1);
-
     }
 }

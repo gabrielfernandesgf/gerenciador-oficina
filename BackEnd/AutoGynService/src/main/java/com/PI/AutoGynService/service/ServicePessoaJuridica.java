@@ -1,7 +1,6 @@
 package com.PI.AutoGynService.service;
 
-import com.PI.AutoGynService.dto.PessoaJuridicaDTO;
-import com.PI.AutoGynService.entity.PessoaFisica;
+import com.PI.AutoGynService.entity.dto.PessoaJuridicaDTO;
 import com.PI.AutoGynService.entity.PessoaJuridica;
 import com.PI.AutoGynService.repository.PessoaJuridicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,23 +10,25 @@ import java.util.List;
 
 @Service
 public class ServicePessoaJuridica {
-
     @Autowired
     PessoaJuridicaRepository pessoaJuridicaRepository;
 
     public void save(PessoaJuridica pessoaJuridica){
         pessoaJuridicaRepository.save(pessoaJuridica);
     }
+
     public PessoaJuridica findById(Long id){
         return pessoaJuridicaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Pessoa à substituir não encontrada com o ID: " + id));
+                .orElseThrow(() -> new RuntimeException("Pessoa não encontrada com o ID: " + id));
     }
+
     public List<PessoaJuridica> findAll(){
         return pessoaJuridicaRepository.findAll();
     }
+
     public PessoaJuridica update(PessoaJuridicaDTO pessoaJuridica, Long id) {
         PessoaJuridica pessoaJuridica1 = pessoaJuridicaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Peça à substituir não encontrada com o ID: " + id));
+                .orElseThrow(() -> new RuntimeException("Pessoa não encontrada com o ID: " + id));
 
         if (pessoaJuridica.getCep() != null) {
             pessoaJuridica1.setCep(pessoaJuridica.getCep());
@@ -62,6 +63,5 @@ public class ServicePessoaJuridica {
         }
 
         return pessoaJuridicaRepository.save(pessoaJuridica1);
-
     }
 }

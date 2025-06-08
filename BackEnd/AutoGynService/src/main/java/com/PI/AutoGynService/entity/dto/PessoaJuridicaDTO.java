@@ -1,4 +1,4 @@
-package com.PI.AutoGynService.dto;
+package com.PI.AutoGynService.entity.dto;
 
 import java.util.Objects;
 
@@ -71,7 +71,7 @@ public class PessoaJuridicaDTO extends ClienteDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        com.PI.AutoGynService.dto.PessoaJuridicaDTO that = (com.PI.AutoGynService.dto.PessoaJuridicaDTO) o;
+        PessoaJuridicaDTO that = (PessoaJuridicaDTO) o;
         return Objects.equals(cnpj, that.cnpj) && Objects.equals(razaoSocial, that.razaoSocial) && Objects.equals(inscricaoSocial, that.inscricaoSocial) && Objects.equals(nomeResposavel, that.nomeResposavel) && Objects.equals(contatoResponsavel, that.contatoResponsavel);
     }
 

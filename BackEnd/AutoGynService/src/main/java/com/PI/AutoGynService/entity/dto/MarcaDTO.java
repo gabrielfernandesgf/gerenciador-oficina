@@ -1,4 +1,4 @@
-package com.PI.AutoGynService.dto;
+package com.PI.AutoGynService.entity.dto;
 
 import java.util.Objects;
 
@@ -47,7 +47,7 @@ public class MarcaDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        com.PI.AutoGynService.dto.MarcaDTO marca = (com.PI.AutoGynService.dto.MarcaDTO) o;
+        MarcaDTO marca = (MarcaDTO) o;
         return Objects.equals(id, marca.id) && Objects.equals(nome, marca.nome) && Objects.equals(descricao, marca.descricao);
     }
 

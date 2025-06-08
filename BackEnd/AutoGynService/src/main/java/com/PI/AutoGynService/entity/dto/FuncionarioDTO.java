@@ -1,4 +1,4 @@
-package com.PI.AutoGynService.dto;
+package com.PI.AutoGynService.entity.dto;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -92,7 +92,7 @@ public class FuncionarioDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        com.PI.AutoGynService.dto.FuncionarioDTO that = (com.PI.AutoGynService.dto.FuncionarioDTO) o;
+        FuncionarioDTO that = (FuncionarioDTO) o;
         return Objects.equals(id, that.id) && Objects.equals(cpf, that.cpf) && Objects.equals(nome, that.nome) && Objects.equals(dataEntrada, that.dataEntrada) && Objects.equals(dataSaida, that.dataSaida) && Objects.equals(telefone, that.telefone) && Objects.equals(email, that.email);
     }
 

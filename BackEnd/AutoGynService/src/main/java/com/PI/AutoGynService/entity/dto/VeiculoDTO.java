@@ -1,4 +1,4 @@
-package com.PI.AutoGynService.dto;
+package com.PI.AutoGynService.entity.dto;
 
 import com.PI.AutoGynService.entity.Modelo;
 
@@ -104,7 +104,7 @@ public class VeiculoDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        VeiculoDTO veiculo = (com.PI.AutoGynService.dto.VeiculoDTO) o;
+        VeiculoDTO veiculo = (VeiculoDTO) o;
         return anoFabricacao == veiculo.anoFabricacao && anoModelo == veiculo.anoModelo && quilometragem == veiculo.quilometragem && Objects.equals(placa, veiculo.placa) && Objects.equals(chassi, veiculo.chassi) && Objects.equals(renavan, veiculo.renavan) && Objects.equals(identificadorPatrimonio, veiculo.identificadorPatrimonio) && Objects.equals(modelo, veiculo.modelo);
     }
 

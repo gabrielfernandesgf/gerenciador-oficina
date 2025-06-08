@@ -1,7 +1,6 @@
 package com.PI.AutoGynService.service;
 
-import com.PI.AutoGynService.dto.PecaDTO;
-import com.PI.AutoGynService.entity.Oficina;
+import com.PI.AutoGynService.entity.dto.PecaDTO;
 import com.PI.AutoGynService.entity.Peca;
 import com.PI.AutoGynService.repository.PecaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,20 +10,22 @@ import java.util.List;
 
 @Service
 public class ServicePeca {
-
     @Autowired
     PecaRepository pecaRepository;
 
     public void save(Peca peca){
         pecaRepository.save(peca);
     }
+
     public Peca findById(Long id){
         return pecaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Peça não encontrada com o ID: " + id));
     }
+
     public List<Peca> findAll(){
         return pecaRepository.findAll();
     }
+
     public Peca update(PecaDTO peca, Long id){
         Peca peca1 = pecaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Peça não encontrada com o ID: " + id));
@@ -44,7 +45,6 @@ public class ServicePeca {
         if (peca.getVolumeTamanho() != null) {
             peca1.setVolumeTamanho(peca.getVolumeTamanho());
         }
-
 
         return pecaRepository.save(peca1);
     }

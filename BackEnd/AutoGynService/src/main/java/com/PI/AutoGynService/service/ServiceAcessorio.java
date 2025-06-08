@@ -1,18 +1,15 @@
 package com.PI.AutoGynService.service;
 
-
-import com.PI.AutoGynService.dto.AcessorioDTO;
+import com.PI.AutoGynService.entity.dto.AcessorioDTO;
 import com.PI.AutoGynService.entity.Acessorio;
 import com.PI.AutoGynService.repository.AcessorioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class ServiceAcessorio {
-
     @Autowired
     AcessorioRepository acessorioRepository;
 
@@ -40,7 +37,6 @@ public class ServiceAcessorio {
         }
 
         return acessorioRepository.save(acessorio1);
-
     }
 }
 

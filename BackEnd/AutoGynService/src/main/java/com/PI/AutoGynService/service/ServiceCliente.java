@@ -1,6 +1,6 @@
 package com.PI.AutoGynService.service;
 
-import com.PI.AutoGynService.dto.ClienteDTO;
+import com.PI.AutoGynService.entity.dto.ClienteDTO;
 import com.PI.AutoGynService.entity.Cliente;
 import com.PI.AutoGynService.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +10,11 @@ import java.util.List;
 
 @Service
 public class ServiceCliente {
-
     @Autowired
     ClienteRepository clienteRepository;
 
     public void save(Cliente cliente){
         clienteRepository.save(cliente);
-
     }
 
     public Cliente findById(Long id){

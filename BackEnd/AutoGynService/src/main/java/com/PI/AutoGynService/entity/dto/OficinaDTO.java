@@ -1,4 +1,4 @@
-package com.PI.AutoGynService.dto;
+package com.PI.AutoGynService.entity.dto;
 
 import java.util.Objects;
 
@@ -58,7 +58,7 @@ public class OficinaDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        com.PI.AutoGynService.dto.OficinaDTO oficina = (com.PI.AutoGynService.dto.OficinaDTO) o;
+        OficinaDTO oficina = (OficinaDTO) o;
         return Objects.equals(id, oficina.id) && Objects.equals(nome, oficina.nome) && Objects.equals(email, oficina.email) && Objects.equals(endereco, oficina.endereco);
     }
 

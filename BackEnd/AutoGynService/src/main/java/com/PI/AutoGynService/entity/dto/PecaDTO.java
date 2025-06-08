@@ -1,4 +1,4 @@
-package com.PI.AutoGynService.dto;
+package com.PI.AutoGynService.entity.dto;
 
 import java.util.Objects;
 
@@ -80,7 +80,7 @@ public class PecaDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        com.PI.AutoGynService.dto.PecaDTO peca = (com.PI.AutoGynService.dto.PecaDTO) o;
+        PecaDTO peca = (PecaDTO) o;
         return Objects.equals(id, peca.id) && Objects.equals(nome, peca.nome) && Objects.equals(fabricante, peca.fabricante) && Objects.equals(volumeTamanho, peca.volumeTamanho) && Objects.equals(quantidadeEstoque, peca.quantidadeEstoque) && Objects.equals(valorUnitario, peca.valorUnitario);
     }
 

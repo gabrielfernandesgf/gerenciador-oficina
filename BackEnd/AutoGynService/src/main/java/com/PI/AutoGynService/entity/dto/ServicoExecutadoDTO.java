@@ -1,4 +1,4 @@
-package com.PI.AutoGynService.dto;
+package com.PI.AutoGynService.entity.dto;
 
 import com.PI.AutoGynService.entity.Funcionario;
 import com.PI.AutoGynService.entity.OS;
@@ -129,7 +129,7 @@ public class ServicoExecutadoDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        com.PI.AutoGynService.dto.ServicoExecutadoDTO that = (com.PI.AutoGynService.dto.ServicoExecutadoDTO) o;
+        ServicoExecutadoDTO that = (ServicoExecutadoDTO) o;
         return Objects.equals(id, that.id) && Objects.equals(dataInicio, that.dataInicio) && Objects.equals(dataFim, that.dataFim) && Objects.equals(quantidade, that.quantidade) && Objects.equals(valorUnitario, that.valorUnitario) && Objects.equals(valorTotal, that.valorTotal) && Objects.equals(descricao, that.descricao) && Objects.equals(os, that.os) && Objects.equals(servico, that.servico) && Objects.equals(funcionario, that.funcionario);
     }
 

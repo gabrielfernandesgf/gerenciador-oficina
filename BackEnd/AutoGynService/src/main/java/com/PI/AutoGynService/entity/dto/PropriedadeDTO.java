@@ -1,4 +1,4 @@
-package com.PI.AutoGynService.dto;
+package com.PI.AutoGynService.entity.dto;
 
 import com.PI.AutoGynService.entity.Cliente;
 import com.PI.AutoGynService.entity.Veiculo;
@@ -73,7 +73,7 @@ public class PropriedadeDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        com.PI.AutoGynService.dto.PropriedadeDTO that = (com.PI.AutoGynService.dto.PropriedadeDTO) o;
+        PropriedadeDTO that = (PropriedadeDTO) o;
         return Objects.equals(id, that.id) && Objects.equals(dataInicio, that.dataInicio) && Objects.equals(dataTermino, that.dataTermino) && Objects.equals(cliente, that.cliente) && Objects.equals(veiculo, that.veiculo);
     }
 

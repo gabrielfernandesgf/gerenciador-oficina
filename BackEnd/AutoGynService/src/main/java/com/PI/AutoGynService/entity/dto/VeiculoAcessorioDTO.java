@@ -1,4 +1,4 @@
-package com.PI.AutoGynService.dto;
+package com.PI.AutoGynService.entity.dto;
 
 import com.PI.AutoGynService.entity.Acessorio;
 import com.PI.AutoGynService.entity.Veiculo;
@@ -50,7 +50,7 @@ public class VeiculoAcessorioDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        com.PI.AutoGynService.dto.VeiculoAcessorioDTO that = (com.PI.AutoGynService.dto.VeiculoAcessorioDTO) o;
+        VeiculoAcessorioDTO that = (VeiculoAcessorioDTO) o;
         return Objects.equals(id, that.id) && Objects.equals(veiculo, that.veiculo) && Objects.equals(acessorio, that.acessorio);
     }
 

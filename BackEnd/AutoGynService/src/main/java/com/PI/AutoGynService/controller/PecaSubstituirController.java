@@ -1,0 +1,41 @@
+package com.PI.AutoGynService.controller;
+
+import com.PI.AutoGynService.entity.dto.PecaSubstituirDTO;
+import com.PI.AutoGynService.entity.PecaSubstituir;
+import com.PI.AutoGynService.service.ServicePecaSubstituir;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("api/pecaSubstituir")
+@CrossOrigin("*")
+public class PecaSubstituirController {
+    private final ServicePecaSubstituir servicePecaSubstituir;
+
+    @Autowired
+    public PecaSubstituirController(ServicePecaSubstituir servicePecaSubstituir) {
+        this.servicePecaSubstituir = servicePecaSubstituir;
+    }
+
+    @GetMapping
+    public List<PecaSubstituir> findAll() {
+        return servicePecaSubstituir.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public PecaSubstituir findById(@PathVariable Long id) {
+        return servicePecaSubstituir.findById(id);
+    }
+
+    @PostMapping
+    public void save(@RequestBody PecaSubstituir pecaSubstituir) {
+        servicePecaSubstituir.save(pecaSubstituir);
+    }
+
+    @PutMapping
+    public PecaSubstituir update(@RequestBody PecaSubstituirDTO pecaSubstituirDTO, @PathVariable Long id) {
+        return servicePecaSubstituir.update(pecaSubstituirDTO, id);
+    }
+}
