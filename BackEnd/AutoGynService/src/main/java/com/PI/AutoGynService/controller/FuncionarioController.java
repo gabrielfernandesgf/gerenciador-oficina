@@ -30,13 +30,13 @@ public class FuncionarioController {
     }
 
     @PostMapping
-    public void save(@RequestBody Funcionario funcionario) {
-        serviceFuncionario.save(funcionario);
+    public Funcionario save(@RequestBody FuncionarioDTO funcionarioDTO) {
+        return serviceFuncionario.save(funcionarioDTO);
     }
 
     @PutMapping
-    public Funcionario update(@RequestBody FuncionarioDTO funcionarioDTO) {
-        return serviceFuncionario.update(funcionarioDTO);
+    public Funcionario update(@RequestBody Funcionario funcionario) {
+        return serviceFuncionario.update(funcionario);
     }
 
     @DeleteMapping("/{id}")

@@ -30,13 +30,13 @@ public class PecaSubstituirController {
     }
 
     @PostMapping
-    public void save(@RequestBody PecaSubstituir pecaSubstituir) {
-        servicePecaSubstituir.save(pecaSubstituir);
+    public PecaSubstituir save(@RequestBody PecaSubstituirDTO pecaSubstituirDTO) {
+        return servicePecaSubstituir.save(pecaSubstituirDTO);
     }
 
     @PutMapping
-    public PecaSubstituir update(@RequestBody PecaSubstituirDTO pecaSubstituirDTO) {
-        return servicePecaSubstituir.update(pecaSubstituirDTO);
+    public PecaSubstituir update(@RequestBody PecaSubstituir pecaSubstituir) {
+        return servicePecaSubstituir.update(pecaSubstituir);
     }
 
     @DeleteMapping("/{id}")

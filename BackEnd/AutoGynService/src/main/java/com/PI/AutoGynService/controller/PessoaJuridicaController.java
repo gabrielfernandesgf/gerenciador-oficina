@@ -30,13 +30,13 @@ public class PessoaJuridicaController {
     }
 
     @PostMapping
-    public void save(@RequestBody PessoaJuridica pessoaJuridica) {
-        servicePessoaJuridica.save(pessoaJuridica);
+    public PessoaJuridica save(@RequestBody PessoaJuridicaDTO pessoaJuridicaDTO) {
+        return servicePessoaJuridica.save(pessoaJuridicaDTO);
     }
 
     @PutMapping
-    public PessoaJuridica update(@RequestBody PessoaJuridicaDTO pessoaJuridicaDTO) {
-        return servicePessoaJuridica.update(pessoaJuridicaDTO);
+    public PessoaJuridica update(@RequestBody PessoaJuridica pessoaJuridica) {
+        return servicePessoaJuridica.update(pessoaJuridica);
     }
 
     @DeleteMapping("/{id}")

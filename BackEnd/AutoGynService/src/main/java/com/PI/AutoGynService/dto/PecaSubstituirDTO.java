@@ -3,26 +3,14 @@ package com.PI.AutoGynService.dto;
 import com.PI.AutoGynService.entity.OS;
 import com.PI.AutoGynService.entity.Peca;
 
+import java.util.Objects;
+
 public class PecaSubstituirDTO {
-
-    private Long id;
-
     private String descricao;
-
     private Integer quantidade;
-
     private Double valorUnitario;
-
-    private Double valorTotal;
-
-    private OS os;
-
-    private Peca peca;
-
-
-    public Long getId() {
-        return id;
-    }
+    private Long osId;
+    private Long pecaId;
 
     public String getDescricao() {
         return descricao;
@@ -48,27 +36,43 @@ public class PecaSubstituirDTO {
         this.valorUnitario = valorUnitario;
     }
 
-    public Double getValorTotal() {
-        return valorTotal;
+    public Long getOsId() {
+        return osId;
     }
 
-    public void setValorTotal(Double valorTotal) {
-        this.valorTotal = valorTotal;
+    public void setOsId(Long osId) {
+        this.osId = osId;
     }
 
-    public OS getOs() {
-        return os;
+    public Long getPecaId() {
+        return pecaId;
     }
 
-    public void setOs(OS os) {
-        this.os = os;
+    public void setPecaId(Long pecaId) {
+        this.pecaId = pecaId;
     }
 
-    public Peca getPeca() {
-        return peca;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PecaSubstituirDTO that = (PecaSubstituirDTO) o;
+        return Objects.equals(descricao, that.descricao) && Objects.equals(quantidade, that.quantidade) && Objects.equals(valorUnitario, that.valorUnitario) && Objects.equals(osId, that.osId) && Objects.equals(pecaId, that.pecaId);
     }
 
-    public void setPeca(Peca peca) {
-        this.peca = peca;
+    @Override
+    public int hashCode() {
+        return Objects.hash(descricao, quantidade, valorUnitario, osId, pecaId);
+    }
+
+    @Override
+    public String toString() {
+        return "PecaSubstituirDTO{" +
+                "descricao='" + descricao + '\'' +
+                ", quantidade=" + quantidade +
+                ", valorUnitario=" + valorUnitario +
+                ", osId=" + osId +
+                ", pecaId=" + pecaId +
+                '}';
     }
 }

@@ -7,40 +7,22 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class OSDTO {
-
-    private Long id;
-
     private Status status;
-
     private LocalDate dataInicio;
-
     private LocalDate dataFim;
-
     private Double valorTotal;
-
     private Double valorPago;
+    private String placaVeiculo;
 
-    private Veiculo veiculo;
+    public OSDTO() {}
 
-    public OSDTO() {
-    }
-
-    public OSDTO(Long id, Status status, LocalDate dataInicio, LocalDate dataFim, Double valorTotal, Double valorPago, Veiculo veiculo) {
-        this.id = id;
+    public OSDTO(Status status, LocalDate dataInicio, LocalDate dataFim, Double valorTotal, Double valorPago, String placaVeiculo) {
         this.status = status;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
         this.valorTotal = valorTotal;
         this.valorPago = valorPago;
-        this.veiculo = veiculo;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.placaVeiculo = placaVeiculo;
     }
 
     public Status getStatus() {
@@ -83,37 +65,36 @@ public class OSDTO {
         this.valorPago = valorPago;
     }
 
-    public Veiculo getVeiculo() {
-        return veiculo;
+    public String getPlacaVeiculo() {
+        return placaVeiculo;
     }
 
-    public void setVeiculo(Veiculo veiculo) {
-        this.veiculo = veiculo;
+    public void setPlacaVeiculo(String placaVeiculo) {
+        this.placaVeiculo = placaVeiculo;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OSDTO os = (OSDTO) o;
-        return Objects.equals(id, os.id) && status == os.status && Objects.equals(dataInicio, os.dataInicio) && Objects.equals(dataFim, os.dataFim) && Objects.equals(valorTotal, os.valorTotal) && Objects.equals(valorPago, os.valorPago) && Objects.equals(veiculo, os.veiculo);
+        OSDTO osdto = (OSDTO) o;
+        return status == osdto.status && Objects.equals(dataInicio, osdto.dataInicio) && Objects.equals(dataFim, osdto.dataFim) && Objects.equals(valorTotal, osdto.valorTotal) && Objects.equals(valorPago, osdto.valorPago) && Objects.equals(placaVeiculo, osdto.placaVeiculo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, status, dataInicio, dataFim, valorTotal, valorPago, veiculo);
+        return Objects.hash(status, dataInicio, dataFim, valorTotal, valorPago, placaVeiculo);
     }
 
     @Override
     public String toString() {
-        return "OS{" +
-                "id=" + id +
-                ", status=" + status +
+        return "OSDTO{" +
+                "status=" + status +
                 ", dataInicio=" + dataInicio +
                 ", dataFim=" + dataFim +
                 ", valorTotal=" + valorTotal +
                 ", valorPago=" + valorPago +
-                ", veiculo=" + veiculo +
+                ", placaVeiculo='" + placaVeiculo + '\'' +
                 '}';
     }
 }

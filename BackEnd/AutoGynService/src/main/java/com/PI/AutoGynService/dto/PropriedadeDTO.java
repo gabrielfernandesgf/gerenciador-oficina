@@ -7,34 +7,18 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class PropriedadeDTO {
-
-    private Long id;
-
     private LocalDate dataInicio;
-
     private LocalDate dataTermino;
+    private Long clienteId;
+    private String placaVeiculo;
 
-    private Cliente cliente;
+    public PropriedadeDTO() {}
 
-    private Veiculo veiculo;
-
-    public PropriedadeDTO() {
-    }
-
-    public PropriedadeDTO(Long id, LocalDate dataInicio, LocalDate dataTermino, Cliente cliente, Veiculo veiculo) {
-        this.id = id;
+    public PropriedadeDTO(LocalDate dataInicio, LocalDate dataTermino, Long clienteId, String placaVeiculo) {
         this.dataInicio = dataInicio;
         this.dataTermino = dataTermino;
-        this.cliente = cliente;
-        this.veiculo = veiculo;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.clienteId = clienteId;
+        this.placaVeiculo = placaVeiculo;
     }
 
     public LocalDate getDataInicio() {
@@ -53,20 +37,20 @@ public class PropriedadeDTO {
         this.dataTermino = dataTermino;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Long getClienteId() {
+        return clienteId;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setClienteId(Long clienteId) {
+        this.clienteId = clienteId;
     }
 
-    public Veiculo getVeiculo() {
-        return veiculo;
+    public String getPlacaVeiculo() {
+        return placaVeiculo;
     }
 
-    public void setVeiculo(Veiculo veiculo) {
-        this.veiculo = veiculo;
+    public void setPlacaVeiculo(String placaVeiculo) {
+        this.placaVeiculo = placaVeiculo;
     }
 
     @Override
@@ -74,22 +58,21 @@ public class PropriedadeDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PropriedadeDTO that = (PropriedadeDTO) o;
-        return Objects.equals(id, that.id) && Objects.equals(dataInicio, that.dataInicio) && Objects.equals(dataTermino, that.dataTermino) && Objects.equals(cliente, that.cliente) && Objects.equals(veiculo, that.veiculo);
+        return Objects.equals(dataInicio, that.dataInicio) && Objects.equals(dataTermino, that.dataTermino) && Objects.equals(clienteId, that.clienteId) && Objects.equals(placaVeiculo, that.placaVeiculo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, dataInicio, dataTermino, cliente, veiculo);
+        return Objects.hash(dataInicio, dataTermino, clienteId, placaVeiculo);
     }
 
     @Override
     public String toString() {
-        return "Propriedade{" +
-                "id=" + id +
-                ", dataInicio=" + dataInicio +
+        return "PropriedadeDTO{" +
+                "dataInicio=" + dataInicio +
                 ", dataTermino=" + dataTermino +
-                ", cliente=" + cliente +
-                ", veiculo=" + veiculo +
+                ", clienteId=" + clienteId +
+                ", placaVeiculo='" + placaVeiculo + '\'' +
                 '}';
     }
 }

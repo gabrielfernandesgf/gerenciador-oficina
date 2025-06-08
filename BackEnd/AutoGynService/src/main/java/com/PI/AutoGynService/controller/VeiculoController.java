@@ -30,13 +30,13 @@ public class VeiculoController {
     }
 
     @PostMapping
-    public void save(@RequestBody Veiculo veiculo) {
-        serviceVeiculo.save(veiculo);
+    public Veiculo save(@RequestBody VeiculoDTO veiculoDTO) {
+        return serviceVeiculo.save(veiculoDTO);
     }
 
     @PutMapping
-    public Veiculo update(@RequestBody VeiculoDTO veiculoDTO) {
-        return serviceVeiculo.update(veiculoDTO);
+    public Veiculo update(@RequestBody Veiculo veiculo) {
+        return serviceVeiculo.update(veiculo);
     }
 
     @DeleteMapping("/{placa}")

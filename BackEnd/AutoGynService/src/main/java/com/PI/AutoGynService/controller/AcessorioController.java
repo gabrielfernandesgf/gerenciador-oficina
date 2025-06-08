@@ -30,13 +30,13 @@ public class AcessorioController {
     }
 
     @PostMapping
-    public void save(@RequestBody Acessorio acessorio) {
-        serviceAcessorio.save(acessorio);
+    public Acessorio save(@RequestBody AcessorioDTO acessorio) {
+        return serviceAcessorio.save(acessorio);
     }
 
     @PutMapping
-    public Acessorio update(@RequestBody AcessorioDTO acessorioDTO) {
-        return serviceAcessorio.update(acessorioDTO);
+    public Acessorio update(@RequestBody Acessorio acessorio) {
+        return serviceAcessorio.update(acessorio);
     }
 
     @DeleteMapping("/{id}")

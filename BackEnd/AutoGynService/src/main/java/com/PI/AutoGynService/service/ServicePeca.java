@@ -13,8 +13,8 @@ public class ServicePeca {
     @Autowired
     PecaRepository pecaRepository;
 
-    public void save(Peca peca){
-        pecaRepository.save(peca);
+    public List<Peca> findAll(){
+        return pecaRepository.findAll();
     }
 
     public Peca findById(Long id){
@@ -22,11 +22,29 @@ public class ServicePeca {
                 .orElseThrow(() -> new RuntimeException("Peça não encontrada com o ID: " + id));
     }
 
-    public List<Peca> findAll(){
-        return pecaRepository.findAll();
+    public Peca save(PecaDTO pecaDTO){
+        if (pecaDTO.getNome() == null || pecaDTO.getNome().trim().isEmpty())
+            throw new RuntimeException("Nome é obrigatório.");
+        if (pecaDTO.getFabricante() == null || pecaDTO.getFabricante().trim().isEmpty())
+            throw new RuntimeException("Fabricante é obrigatório.");
+        if (pecaDTO.getVolumeTamanho() == null || pecaDTO.getVolumeTamanho().trim().isEmpty())
+            throw new RuntimeException("Informe o volume|tamanho da peça.");
+        if (pecaDTO.getValorUnitario() >= 0)
+            throw new RuntimeException("Valor unitário é inválido.");
+        if (pecaDTO.getQuantidadeEstoque() > 0)
+            throw new RuntimeException("Quantidade em estoque é inválida.");
+
+        Peca peca = new Peca();
+        peca.setNome(pecaDTO.getNome());
+        peca.setFabricante(pecaDTO.getFabricante());
+        peca.setVolumeTamanho(pecaDTO.getVolumeTamanho());
+        peca.setValorUnitario(pecaDTO.getValorUnitario());
+        peca.setQuantidadeEstoque(pecaDTO.getQuantidadeEstoque());
+
+        return pecaRepository.save(peca);
     }
 
-    public Peca update(PecaDTO peca){
+    public Peca update(Peca peca){
         Peca peca1 = pecaRepository.findById(peca.getId())
                 .orElseThrow(() -> new RuntimeException("Peça não encontrada com o ID: " + peca.getId()));
 

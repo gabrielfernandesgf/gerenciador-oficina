@@ -3,38 +3,20 @@ package com.PI.AutoGynService.dto;
 import java.util.Objects;
 
 public class ClienteDTO {
-
-
-    private Long id;
-
     private String nome;
-
     private String email;
-
     private String telefone;
-
     private String endereco;
-
     private String cep;
 
-    public ClienteDTO() {
-    }
+    public ClienteDTO() {}
 
-    public ClienteDTO(Long id, String nome, String email, String telefone, String endereco, String cep) {
-        this.id = id;
+    public ClienteDTO(String nome, String email, String telefone, String endereco, String cep) {
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.endereco = endereco;
         this.cep = cep;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -81,20 +63,19 @@ public class ClienteDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ClienteDTO cliente = (ClienteDTO) o;
-        return Objects.equals(id, cliente.id) && Objects.equals(nome, cliente.nome) && Objects.equals(email, cliente.email) && Objects.equals(telefone, cliente.telefone) && Objects.equals(endereco, cliente.endereco) && Objects.equals(cep, cliente.cep);
+        ClienteDTO that = (ClienteDTO) o;
+        return Objects.equals(nome, that.nome) && Objects.equals(email, that.email) && Objects.equals(telefone, that.telefone) && Objects.equals(endereco, that.endereco) && Objects.equals(cep, that.cep);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, email, telefone, endereco, cep);
+        return Objects.hash(nome, email, telefone, endereco, cep);
     }
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
+        return "ClienteDTO{" +
+                "nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
                 ", telefone='" + telefone + '\'' +
                 ", endereco='" + endereco + '\'' +

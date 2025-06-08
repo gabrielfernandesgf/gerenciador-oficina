@@ -6,44 +6,30 @@ import com.PI.AutoGynService.entity.Veiculo;
 import java.util.Objects;
 
 public class VeiculoAcessorioDTO {
+    private String veiculoPlaca;
+    private Long acessorioId;
 
-    private Long id;
+    public VeiculoAcessorioDTO() {}
 
-    private Veiculo veiculo;
-
-    private Acessorio acessorio;
-
-    public VeiculoAcessorioDTO() {
+    public VeiculoAcessorioDTO(String veiculoPlaca, Long acessorioId) {
+        this.veiculoPlaca = veiculoPlaca;
+        this.acessorioId = acessorioId;
     }
 
-    public VeiculoAcessorioDTO(Long id, Veiculo veiculo, Acessorio acessorio) {
-        id = id;
-        this.veiculo = veiculo;
-        this.acessorio = acessorio;
+    public String getVeiculoPlaca() {
+        return veiculoPlaca;
     }
 
-    public Long getId() {
-        return id;
+    public void setVeiculoPlaca(String veiculoPlaca) {
+        this.veiculoPlaca = veiculoPlaca;
     }
 
-    public void setId(Long id) {
-        id = id;
+    public Long getAcessorioId() {
+        return acessorioId;
     }
 
-    public Veiculo getVeiculo() {
-        return veiculo;
-    }
-
-    public void setVeiculo(Veiculo veiculo) {
-        this.veiculo = veiculo;
-    }
-
-    public Acessorio getAcessorio() {
-        return acessorio;
-    }
-
-    public void setAcessorio(Acessorio acessorio) {
-        this.acessorio = acessorio;
+    public void setAcessorioId(Long acessorioId) {
+        this.acessorioId = acessorioId;
     }
 
     @Override
@@ -51,20 +37,19 @@ public class VeiculoAcessorioDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         VeiculoAcessorioDTO that = (VeiculoAcessorioDTO) o;
-        return Objects.equals(id, that.id) && Objects.equals(veiculo, that.veiculo) && Objects.equals(acessorio, that.acessorio);
+        return Objects.equals(veiculoPlaca, that.veiculoPlaca) && Objects.equals(acessorioId, that.acessorioId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, veiculo, acessorio);
+        return Objects.hash(veiculoPlaca, acessorioId);
     }
 
     @Override
     public String toString() {
-        return "VeiculoAcessorio{" +
-                "id=" + id +
-                ", veiculo=" + veiculo +
-                ", acessorio=" + acessorio +
+        return "VeiculoAcessorioDTO{" +
+                "veiculoPlaca='" + veiculoPlaca + '\'' +
+                ", acessorioId=" + acessorioId +
                 '}';
     }
 }

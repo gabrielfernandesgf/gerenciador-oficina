@@ -5,16 +5,13 @@ import java.util.Objects;
 
 public class PessoaFisicaDTO extends ClienteDTO
 {
-
     private String cpf;
-
     private LocalDate dataDeNascimento;
 
-    public PessoaFisicaDTO() {
-    }
+    public PessoaFisicaDTO() {}
 
-    public PessoaFisicaDTO(Long id, String nome, String email, String telefone, String endereco, String cep, String cpf, LocalDate dataDeNascimento) {
-        super(id, nome, email, telefone, endereco, cep);
+    public PessoaFisicaDTO(String nome, String email, String telefone, String endereco, String cep, String cpf, LocalDate dataDeNascimento) {
+        super(nome, email, telefone, endereco, cep);
         this.cpf = cpf;
         this.dataDeNascimento = dataDeNascimento;
     }
@@ -51,7 +48,7 @@ public class PessoaFisicaDTO extends ClienteDTO
 
     @Override
     public String toString() {
-        return "PessoaFisica{" +
+        return "PessoaFisicaDTO{" +
                 "cpf='" + cpf + '\'' +
                 ", dataDeNascimento=" + dataDeNascimento +
                 '}';

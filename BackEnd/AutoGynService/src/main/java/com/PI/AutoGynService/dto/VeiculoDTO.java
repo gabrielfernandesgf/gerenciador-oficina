@@ -5,27 +5,18 @@ import com.PI.AutoGynService.entity.Modelo;
 import java.util.Objects;
 
 public class VeiculoDTO {
-
     private String placa;
-
     private String chassi;
-
     private String renavan;
-
     private int anoFabricacao;
-
     private int anoModelo;
-
     private int quilometragem;
-
     private String identificadorPatrimonio;
+    private Long modeloID;
 
-    private Modelo modelo;
+    public VeiculoDTO() {}
 
-    public VeiculoDTO() {
-    }
-
-    public VeiculoDTO(String placa, String chassi, String renavan, int anoFabricacao, int anoModelo, int quilometragem, String identificadorPatrimonio, Modelo modelo) {
+    public VeiculoDTO(String placa, String chassi, String renavan, int anoFabricacao, int anoModelo, int quilometragem, String identificadorPatrimonio, Long modeloID) {
         this.placa = placa;
         this.chassi = chassi;
         this.renavan = renavan;
@@ -33,7 +24,7 @@ public class VeiculoDTO {
         this.anoModelo = anoModelo;
         this.quilometragem = quilometragem;
         this.identificadorPatrimonio = identificadorPatrimonio;
-        this.modelo = modelo;
+        this.modeloID = modeloID;
     }
 
     public String getPlaca() {
@@ -92,30 +83,30 @@ public class VeiculoDTO {
         this.identificadorPatrimonio = identificadorPatrimonio;
     }
 
-    public Modelo getModelo() {
-        return modelo;
+    public Long getModeloID() {
+        return modeloID;
     }
 
-    public void setModelo(Modelo modelo) {
-        this.modelo = modelo;
+    public void setModeloID(Long modeloID) {
+        this.modeloID = modeloID;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        VeiculoDTO veiculo = (VeiculoDTO) o;
-        return anoFabricacao == veiculo.anoFabricacao && anoModelo == veiculo.anoModelo && quilometragem == veiculo.quilometragem && Objects.equals(placa, veiculo.placa) && Objects.equals(chassi, veiculo.chassi) && Objects.equals(renavan, veiculo.renavan) && Objects.equals(identificadorPatrimonio, veiculo.identificadorPatrimonio) && Objects.equals(modelo, veiculo.modelo);
+        VeiculoDTO that = (VeiculoDTO) o;
+        return anoFabricacao == that.anoFabricacao && anoModelo == that.anoModelo && quilometragem == that.quilometragem && Objects.equals(placa, that.placa) && Objects.equals(chassi, that.chassi) && Objects.equals(renavan, that.renavan) && Objects.equals(identificadorPatrimonio, that.identificadorPatrimonio) && Objects.equals(modeloID, that.modeloID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(placa, chassi, renavan, anoFabricacao, anoModelo, quilometragem, identificadorPatrimonio, modelo);
+        return Objects.hash(placa, chassi, renavan, anoFabricacao, anoModelo, quilometragem, identificadorPatrimonio, modeloID);
     }
 
     @Override
     public String toString() {
-        return "Veiculo{" +
+        return "VeiculoDTO{" +
                 "placa='" + placa + '\'' +
                 ", chassi='" + chassi + '\'' +
                 ", renavan='" + renavan + '\'' +
@@ -123,7 +114,7 @@ public class VeiculoDTO {
                 ", anoModelo=" + anoModelo +
                 ", quilometragem=" + quilometragem +
                 ", identificadorPatrimonio='" + identificadorPatrimonio + '\'' +
-                ", modelo=" + modelo +
+                ", modeloID=" + modeloID +
                 '}';
     }
 }

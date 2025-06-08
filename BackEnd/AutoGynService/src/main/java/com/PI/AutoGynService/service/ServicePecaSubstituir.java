@@ -1,7 +1,11 @@
 package com.PI.AutoGynService.service;
 
 import com.PI.AutoGynService.dto.PecaSubstituirDTO;
+import com.PI.AutoGynService.entity.OS;
+import com.PI.AutoGynService.entity.Peca;
 import com.PI.AutoGynService.entity.PecaSubstituir;
+import com.PI.AutoGynService.repository.OSRepository;
+import com.PI.AutoGynService.repository.PecaRepository;
 import com.PI.AutoGynService.repository.PecaSubstituirRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +17,14 @@ public class ServicePecaSubstituir {
     @Autowired
     PecaSubstituirRepository pecaSubstituirRepository;
 
-    public void save(PecaSubstituir pecaSubstituir){
-        pecaSubstituirRepository.save(pecaSubstituir);
+    @Autowired
+    PecaRepository pecaRepository;
+
+    @Autowired
+    OSRepository osRepository;
+
+    public List<PecaSubstituir> findAll(){
+        return pecaSubstituirRepository.findAll();
     }
 
     public PecaSubstituir findById(Long id){
@@ -22,11 +32,32 @@ public class ServicePecaSubstituir {
                 .orElseThrow(() -> new RuntimeException("Peça à substituir não encontrada com o ID: " + id));
     }
 
-    public List<PecaSubstituir> findAll(){
-        return pecaSubstituirRepository.findAll();
+    public PecaSubstituir save(PecaSubstituirDTO pecaSubstituirDTO){
+        if (pecaSubstituirDTO.getDescricao() == null || pecaSubstituirDTO.getDescricao().trim().isEmpty())
+            throw new RuntimeException("Informe uma descrição.");
+        if (pecaSubstituirDTO.getQuantidade() <= 0)
+            throw new RuntimeException("Quantidade inválida.");
+        if (pecaSubstituirDTO.getValorUnitario() <= 0)
+            throw new RuntimeException("Valor unitário deve ser positivo.");
+
+        Peca peca = pecaRepository.findById(pecaSubstituirDTO.getPecaId())
+                .orElseThrow(() -> new RuntimeException("Peça não encontrada com o ID: " + pecaSubstituirDTO.getPecaId()));
+
+        OS os = osRepository.findById(pecaSubstituirDTO.getOsId())
+                .orElseThrow(() -> new RuntimeException("OS não encontrada com o ID: " + pecaSubstituirDTO.getOsId()));
+
+        PecaSubstituir pecaSubstituir = new PecaSubstituir();
+        pecaSubstituir.setDescricao(pecaSubstituirDTO.getDescricao());
+        pecaSubstituir.setQuantidade(pecaSubstituirDTO.getQuantidade());
+        pecaSubstituir.setValorUnitario(pecaSubstituirDTO.getValorUnitario());
+        pecaSubstituir.setValorTotal(pecaSubstituir.getValorTotal() * pecaSubstituir.getQuantidade());
+        pecaSubstituir.setPeca(peca);
+        pecaSubstituir.setOs(os);
+
+        return pecaSubstituirRepository.save(pecaSubstituir);
     }
 
-    public PecaSubstituir update(PecaSubstituirDTO pecaSubstituir) {
+    public PecaSubstituir update(PecaSubstituir pecaSubstituir) {
         PecaSubstituir pecaSubstituir1 = pecaSubstituirRepository.findById(pecaSubstituir.getId())
                 .orElseThrow(() -> new RuntimeException("Peça à substituir não encontrada com o ID: " + pecaSubstituir.getId()));
 

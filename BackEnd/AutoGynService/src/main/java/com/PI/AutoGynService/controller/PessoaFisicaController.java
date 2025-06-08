@@ -30,13 +30,13 @@ public class PessoaFisicaController {
     }
 
     @PostMapping
-    public void save(@RequestBody PessoaFisica pessoaFisica) {
-        servicePessoaFisica.save(pessoaFisica);
+    public PessoaFisica save(@RequestBody PessoaFisicaDTO pessoaFisicaDTO) {
+        return servicePessoaFisica.save(pessoaFisicaDTO);
     }
 
     @PutMapping
-    public PessoaFisica update(@RequestBody PessoaFisicaDTO pessoaFisicaDTO) {
-        return servicePessoaFisica.update(pessoaFisicaDTO);
+    public PessoaFisica update(@RequestBody PessoaFisica pessoaFisica) {
+        return servicePessoaFisica.update(pessoaFisica);
     }
 
     @DeleteMapping("/{id}")

@@ -30,13 +30,13 @@ public class MarcaController {
     }
 
     @PostMapping
-    public void save(@RequestBody Marca marca) {
-        serviceMarca.save(marca);
+    public Marca save(@RequestBody MarcaDTO marcaDTO) {
+        return serviceMarca.save(marcaDTO);
     }
 
     @PutMapping
-    public Marca update(@RequestBody MarcaDTO marcaDTO) {
-        return serviceMarca.update(marcaDTO);
+    public Marca update(@RequestBody Marca marca) {
+        return serviceMarca.update(marca);
     }
 
     @DeleteMapping("/{id}")

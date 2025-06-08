@@ -13,8 +13,8 @@ public class ServicePessoaFisica {
     @Autowired
     PessoaFisicaRepository pessoaFisicaRepository;
 
-    public void save(PessoaFisica pessoaFisica){
-        pessoaFisicaRepository.save(pessoaFisica);
+    public List<PessoaFisica> findAll(){
+        return pessoaFisicaRepository.findAll();
     }
 
     public PessoaFisica findById(Long id){
@@ -22,11 +22,20 @@ public class ServicePessoaFisica {
                 .orElseThrow(() -> new RuntimeException("Pessoa não encontrada com o ID: " + id));
     }
 
-    public List<PessoaFisica> findAll(){
-        return pessoaFisicaRepository.findAll();
+    public PessoaFisica save(PessoaFisicaDTO pessoaFisicaDTO){
+        if (pessoaFisicaDTO.getCpf() == null || pessoaFisicaDTO.getCpf().length() != 11)
+            throw new RuntimeException("CPF inválido.");
+        if (pessoaFisicaDTO.getDataDeNascimento() == null || pessoaFisicaDTO.getDataDeNascimento().toString().trim().isEmpty())
+            throw new RuntimeException("Data de nascimento inválida");
+
+        PessoaFisica pessoaFisica = new PessoaFisica();
+        pessoaFisica.setCpf(pessoaFisicaDTO.getCpf());
+        pessoaFisica.setDataDeNascimento(pessoaFisicaDTO.getDataDeNascimento());
+
+        return pessoaFisicaRepository.save(pessoaFisica);
     }
 
-    public PessoaFisica update(PessoaFisicaDTO pessoaFisica) {
+    public PessoaFisica update(PessoaFisica pessoaFisica) {
         PessoaFisica pessoaFisica1 = pessoaFisicaRepository.findById(pessoaFisica.getId())
                 .orElseThrow(() -> new RuntimeException("Pessoa não encontrada com o ID: " + pessoaFisica.getId()));
 

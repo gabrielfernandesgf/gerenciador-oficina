@@ -30,13 +30,13 @@ public class PropriedadeController {
     }
 
     @PostMapping
-    public void save(@RequestBody Propriedade propriedade) {
-        servicePropriedade.save(propriedade);
+    public Propriedade save(@RequestBody PropriedadeDTO propriedadeDTO) {
+        return servicePropriedade.save(propriedadeDTO);
     }
 
     @PutMapping
-    public Propriedade update(@RequestBody PropriedadeDTO propriedadeDTO) {
-        return servicePropriedade.update(propriedadeDTO);
+    public Propriedade update(@RequestBody Propriedade propriedade) {
+        return servicePropriedade.update(propriedade);
     }
 
     @DeleteMapping("/{id}")

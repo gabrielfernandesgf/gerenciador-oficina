@@ -13,8 +13,8 @@ public class ServiceAcessorio {
     @Autowired
     AcessorioRepository acessorioRepository;
 
-    public void save(Acessorio acessorio){
-        acessorioRepository.save(acessorio);
+    public List<Acessorio> findAll(){
+        return acessorioRepository.findAll();
     }
 
     public Acessorio findById(Long id){
@@ -22,19 +22,25 @@ public class ServiceAcessorio {
                 .orElseThrow(() -> new RuntimeException("Acessório não encontrado com o ID: " + id));
     }
 
-    public List<Acessorio> findAll(){
-        return acessorioRepository.findAll();
+    public Acessorio save(AcessorioDTO acessorioDTO){
+        if (acessorioDTO.getNome() == null || acessorioDTO.getNome().trim().isEmpty())
+            throw new RuntimeException("Nome é obrigatório.");
+        if (acessorioDTO.getDescricao() == null || acessorioDTO.getDescricao().trim().isEmpty())
+            throw new RuntimeException("Descrição é obrigatória.");
+
+        Acessorio acessorio = new Acessorio();
+        acessorio.setNome(acessorioDTO.getNome());
+        acessorio.setDescricao(acessorioDTO.getDescricao());
+
+        return acessorioRepository.save(acessorio);
     }
 
-    public Acessorio update(AcessorioDTO acessorio){
+    public Acessorio update(Acessorio acessorio){
         Acessorio acessorio1 = acessorioRepository.findById(acessorio.getId())
                 .orElseThrow(() -> new RuntimeException("Acessório não encontrado com o ID: " + acessorio.getId()));
-        if(acessorio.getDescricao() != null){
-            acessorio1.setDescricao(acessorio.getDescricao());
-        }
-        if (acessorio.getNome() != null){
-            acessorio1.setNome(acessorio.getNome());
-        }
+
+        if(acessorio.getDescricao() != null) acessorio1.setDescricao(acessorio.getDescricao());
+        if (acessorio.getNome() != null) acessorio1.setNome(acessorio.getNome());
 
         return acessorioRepository.save(acessorio1);
     }
@@ -43,4 +49,3 @@ public class ServiceAcessorio {
         acessorioRepository.deleteById(id);
     }
 }
-

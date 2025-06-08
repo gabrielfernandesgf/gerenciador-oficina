@@ -13,8 +13,8 @@ public class ServiceServico {
     @Autowired
     ServicoRepository servicoRepository;
 
-    public void save(Servico servico){
-        servicoRepository.save(servico);
+    public List<Servico> findAll(){
+        return servicoRepository.findAll();
     }
 
     public Servico findById(Long id){
@@ -22,11 +22,23 @@ public class ServiceServico {
                 .orElseThrow(() -> new RuntimeException("Serviço não encontrado com o ID: " + id));
     }
 
-    public List<Servico> findAll(){
-        return servicoRepository.findAll();
+    public Servico save(ServicoDTO servicoDTO){
+        if (servicoDTO.getNome() == null || servicoDTO.getNome().trim().isEmpty())
+            throw new RuntimeException("Informe o nome do serviço.");
+        if (servicoDTO.getDescricao() == null || servicoDTO.getDescricao().trim().isEmpty())
+            throw new RuntimeException("Informe uma descrição para o serviço.");
+        if (servicoDTO.getValorUnitario() <= 0)
+            throw new RuntimeException("Valor unitário inválido.");
+
+        Servico servico = new Servico();
+        servico.setNome(servicoDTO.getNome());
+        servico.setDescricao(servicoDTO.getDescricao());
+        servico.setValorUnitario(servicoDTO.getValorUnitario());
+
+        return servicoRepository.save(servico);
     }
 
-    public Servico upadate(ServicoDTO servico){
+    public Servico upadate(Servico servico){
         Servico servico1 = servicoRepository.findById(servico.getId())
                 .orElseThrow(() -> new RuntimeException("Serviço não encontrado com o ID: " + servico.getId()));
 

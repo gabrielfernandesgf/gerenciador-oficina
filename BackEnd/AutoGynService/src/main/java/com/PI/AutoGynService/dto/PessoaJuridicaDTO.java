@@ -3,22 +3,16 @@ package com.PI.AutoGynService.dto;
 import java.util.Objects;
 
 public class PessoaJuridicaDTO extends ClienteDTO {
-
     private String cnpj;
-
     private String razaoSocial;
-
     private String inscricaoSocial;
-
     private String nomeResposavel;
-
     private String contatoResponsavel;
 
-    public PessoaJuridicaDTO() {
-    }
+    public PessoaJuridicaDTO() {}
 
-    public PessoaJuridicaDTO(Long id, String nome, String email, String telefone, String endereco, String cep, String cnpj, String razaoSocial, String inscricaoSocial, String nomeResposavel, String contatoResponsavel) {
-        super(id, nome, email, telefone, endereco, cep);
+    public PessoaJuridicaDTO(String nome, String email, String telefone, String endereco, String cep, String cnpj, String razaoSocial, String inscricaoSocial, String nomeResposavel, String contatoResponsavel) {
+        super(nome, email, telefone, endereco, cep);
         this.cnpj = cnpj;
         this.razaoSocial = razaoSocial;
         this.inscricaoSocial = inscricaoSocial;

@@ -13,8 +13,26 @@ public class ServiceCliente {
     @Autowired
     ClienteRepository clienteRepository;
 
-    public void save(Cliente cliente){
-        clienteRepository.save(cliente);
+    public Cliente save(ClienteDTO clienteDTO){
+        if (clienteDTO.getNome() == null || clienteDTO.getNome().trim().isEmpty())
+            throw new RuntimeException("Nome é obrigatório.");
+        if (clienteDTO.getEmail() == null || clienteDTO.getEmail().trim().isEmpty())
+            throw new RuntimeException("Email é obrigatório");
+        if (clienteDTO.getTelefone() == null || clienteDTO.getTelefone().trim().isEmpty())
+            throw new RuntimeException("Telefone é obrigatório.");
+        if (clienteDTO.getEndereco() == null || clienteDTO.getEndereco().trim().isEmpty())
+            throw new RuntimeException("Endereço é obrigatório.");
+        if (clienteDTO.getCep() == null || clienteDTO.getCep().trim().isEmpty())
+            throw new RuntimeException("CEP é obrigatório.");
+
+        Cliente cliente = new Cliente();
+        cliente.setNome(clienteDTO.getNome());
+        cliente.setEmail(clienteDTO.getEmail());
+        cliente.setTelefone(clienteDTO.getTelefone());
+        cliente.setEndereco(clienteDTO.getEndereco());
+        cliente.setCep(clienteDTO.getCep());
+
+        return clienteRepository.save(cliente);
     }
 
     public Cliente findById(Long id){
@@ -26,7 +44,7 @@ public class ServiceCliente {
         return clienteRepository.findAll();
     }
 
-    public Cliente update(ClienteDTO cliente){
+    public Cliente update(Cliente cliente){
         Cliente cliente1 = clienteRepository.findById(cliente.getId())
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado com o ID: " + cliente.getId()));
 
