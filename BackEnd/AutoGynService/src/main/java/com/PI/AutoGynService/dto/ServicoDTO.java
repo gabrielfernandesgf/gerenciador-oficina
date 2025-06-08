@@ -1,8 +1,8 @@
-package com.PI.AutoGynService.entity.dto;
+package com.PI.AutoGynService.dto;
 
 import java.util.Objects;
 
-public class MarcaDTO {
+public class ServicoDTO {
 
     private Long id;
 
@@ -10,13 +10,16 @@ public class MarcaDTO {
 
     private String descricao;
 
-    public MarcaDTO() {
+    private Double valorUnitario;
+
+    public ServicoDTO() {
     }
 
-    public MarcaDTO(Long id, String nome, String descricao) {
+    public ServicoDTO(Long id, String nome, String descricao, Double valorUnitario) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
+        this.valorUnitario = valorUnitario;
     }
 
     public Long getId() {
@@ -43,25 +46,34 @@ public class MarcaDTO {
         this.descricao = descricao;
     }
 
+    public Double getValorUnitario() {
+        return valorUnitario;
+    }
+
+    public void setValorUnitario(Double valorUnitario) {
+        this.valorUnitario = valorUnitario;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MarcaDTO marca = (MarcaDTO) o;
-        return Objects.equals(id, marca.id) && Objects.equals(nome, marca.nome) && Objects.equals(descricao, marca.descricao);
+        ServicoDTO servico = (ServicoDTO) o;
+        return Objects.equals(id, servico.id) && Objects.equals(nome, servico.nome) && Objects.equals(descricao, servico.descricao) && Objects.equals(valorUnitario, servico.valorUnitario);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, descricao);
+        return Objects.hash(id, nome, descricao, valorUnitario);
     }
 
     @Override
     public String toString() {
-        return "Marca{" +
+        return "Servico{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
+                ", valorUnitario=" + valorUnitario +
                 '}';
     }
 }

@@ -1,6 +1,6 @@
 package com.PI.AutoGynService.controller;
 
-import com.PI.AutoGynService.entity.dto.OficinaDTO;
+import com.PI.AutoGynService.dto.OficinaDTO;
 import com.PI.AutoGynService.entity.Oficina;
 import com.PI.AutoGynService.service.ServiceOficina;
 import org.springframework.beans.factory.annotation.Autowired;

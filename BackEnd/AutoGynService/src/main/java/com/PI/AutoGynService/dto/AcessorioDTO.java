@@ -1,4 +1,4 @@
-package com.PI.AutoGynService.entity.dto;
+package com.PI.AutoGynService.dto;
 
 
 import java.util.Objects;

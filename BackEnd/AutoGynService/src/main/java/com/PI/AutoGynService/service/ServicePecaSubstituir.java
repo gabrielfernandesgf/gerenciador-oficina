@@ -1,6 +1,6 @@
 package com.PI.AutoGynService.service;
 
-import com.PI.AutoGynService.entity.dto.PecaSubstituirDTO;
+import com.PI.AutoGynService.dto.PecaSubstituirDTO;
 import com.PI.AutoGynService.entity.PecaSubstituir;
 import com.PI.AutoGynService.repository.PecaSubstituirRepository;
 import org.springframework.beans.factory.annotation.Autowired;

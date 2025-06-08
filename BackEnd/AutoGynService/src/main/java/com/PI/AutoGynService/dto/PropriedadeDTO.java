@@ -1,4 +1,4 @@
-package com.PI.AutoGynService.entity.dto;
+package com.PI.AutoGynService.dto;
 
 import com.PI.AutoGynService.entity.Cliente;
 import com.PI.AutoGynService.entity.Veiculo;
