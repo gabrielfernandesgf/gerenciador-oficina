@@ -1,6 +1,6 @@
 package com.PI.AutoGynService.service;
 
-import com.PI.AutoGynService.entity.dto.MarcaDTO;
+import com.PI.AutoGynService.dto.MarcaDTO;
 import com.PI.AutoGynService.entity.Marca;
 import com.PI.AutoGynService.repository.MarcaRepository;
 import org.springframework.beans.factory.annotation.Autowired;

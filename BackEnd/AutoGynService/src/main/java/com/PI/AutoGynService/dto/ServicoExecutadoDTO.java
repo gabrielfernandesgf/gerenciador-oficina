@@ -1,4 +1,4 @@
-package com.PI.AutoGynService.entity.dto;
+package com.PI.AutoGynService.dto;
 
 import com.PI.AutoGynService.entity.Funcionario;
 import com.PI.AutoGynService.entity.OS;

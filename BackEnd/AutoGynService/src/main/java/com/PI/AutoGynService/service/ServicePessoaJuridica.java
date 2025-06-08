@@ -1,6 +1,6 @@
 package com.PI.AutoGynService.service;
 
-import com.PI.AutoGynService.entity.dto.PessoaJuridicaDTO;
+import com.PI.AutoGynService.dto.PessoaJuridicaDTO;
 import com.PI.AutoGynService.entity.PessoaJuridica;
 import com.PI.AutoGynService.repository.PessoaJuridicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
