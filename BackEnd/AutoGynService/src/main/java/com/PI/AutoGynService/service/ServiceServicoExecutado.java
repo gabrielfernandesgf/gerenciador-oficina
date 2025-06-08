@@ -26,9 +26,9 @@ public class ServiceServicoExecutado {
         return servicoExecutadoRepository.findAll();
     }
 
-    public ServicoExecutado update(ServicoExecutadoDTO servicoExecutado, Long id) {
-        ServicoExecutado servicoExecutado1 = servicoExecutadoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Serviço executado não encontrado com o ID: " + id));
+    public ServicoExecutado update(ServicoExecutadoDTO servicoExecutado) {
+        ServicoExecutado servicoExecutado1 = servicoExecutadoRepository.findById(servicoExecutado.getId())
+                .orElseThrow(() -> new RuntimeException("Serviço executado não encontrado com o ID: " + servicoExecutado.getId()));
 
         if (servicoExecutado.getServico() != null) {
             servicoExecutado1.setServico(servicoExecutado.getServico());
@@ -59,5 +59,9 @@ public class ServiceServicoExecutado {
         }
 
         return servicoExecutadoRepository.save(servicoExecutado1);
+    }
+
+    public void delete(Long id) {
+        servicoExecutadoRepository.deleteById(id);
     }
 }

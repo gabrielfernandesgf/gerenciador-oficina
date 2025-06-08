@@ -35,7 +35,12 @@ public class OficinaController {
     }
 
     @PutMapping
-    public Oficina update(@RequestBody OficinaDTO oficinaDTO, @PathVariable Long id) {
-        return serviceOficina.update(oficinaDTO, id);
+    public Oficina update(@RequestBody OficinaDTO oficinaDTO) {
+        return serviceOficina.update(oficinaDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        serviceOficina.delete(id);
     }
 }

@@ -26,9 +26,9 @@ public class ServiceVeiculoAcessorio {
         return veiculoAcessorioRepository.findAll();
     }
 
-    public VeiculoAcessorio update(VeiculoAcessorioDTO veiculoAcessorio, Long id){
-        VeiculoAcessorio veiculoAcessorio1 = veiculoAcessorioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Veiculo|Acessorio não encontrado com a placa: " + id));
+    public VeiculoAcessorio update(VeiculoAcessorioDTO veiculoAcessorio){
+        VeiculoAcessorio veiculoAcessorio1 = veiculoAcessorioRepository.findById(veiculoAcessorio.getId())
+                .orElseThrow(() -> new RuntimeException("Veiculo|Acessorio não encontrado com a placa: " + veiculoAcessorio.getId()));
 
         if(veiculoAcessorio.getAcessorio() != null){
             veiculoAcessorio1.setAcessorio(veiculoAcessorio.getAcessorio());
@@ -38,5 +38,9 @@ public class ServiceVeiculoAcessorio {
         }
 
         return veiculoAcessorioRepository.save(veiculoAcessorio1);
+    }
+
+    public void delete(Long id) {
+        veiculoAcessorioRepository.deleteById(id);
     }
 }

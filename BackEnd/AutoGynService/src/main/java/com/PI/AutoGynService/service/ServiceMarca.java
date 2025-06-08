@@ -26,9 +26,9 @@ public class ServiceMarca {
         return marcaRepository.findAll();
     }
 
-    public Marca update(MarcaDTO marca, Long id){
-        Marca marca1 = marcaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Marca não encontrada com o ID: " + id));
+    public Marca update(MarcaDTO marca){
+        Marca marca1 = marcaRepository.findById(marca.getId())
+                .orElseThrow(() -> new RuntimeException("Marca não encontrada com o ID: " + marca.getId()));
 
         if(marca.getDescricao() != null){
             marca1.setDescricao(marca.getDescricao());
@@ -37,5 +37,9 @@ public class ServiceMarca {
             marca1.setNome(marca.getNome());
         }
         return marcaRepository.save(marca1);
+    }
+
+    public void delete(Long id) {
+        marcaRepository.deleteById(id);
     }
 }

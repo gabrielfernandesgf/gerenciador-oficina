@@ -26,9 +26,9 @@ public class ServicePecaSubstituir {
         return pecaSubstituirRepository.findAll();
     }
 
-    public PecaSubstituir update(PecaSubstituirDTO pecaSubstituir, Long id) {
-        PecaSubstituir pecaSubstituir1 = pecaSubstituirRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Peça à substituir não encontrada com o ID: " + id));
+    public PecaSubstituir update(PecaSubstituirDTO pecaSubstituir) {
+        PecaSubstituir pecaSubstituir1 = pecaSubstituirRepository.findById(pecaSubstituir.getId())
+                .orElseThrow(() -> new RuntimeException("Peça à substituir não encontrada com o ID: " + pecaSubstituir.getId()));
 
         if (pecaSubstituir.getDescricao() != null) {
             pecaSubstituir1.setDescricao(pecaSubstituir.getDescricao());
@@ -50,5 +50,9 @@ public class ServicePecaSubstituir {
         }
 
         return pecaSubstituirRepository.save(pecaSubstituir1);
+    }
+
+    public void delete(Long id) {
+        pecaSubstituirRepository.deleteById(id);
     }
 }

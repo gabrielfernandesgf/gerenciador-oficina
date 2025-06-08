@@ -35,7 +35,12 @@ public class PessoaJuridicaController {
     }
 
     @PutMapping
-    public PessoaJuridica update(@RequestBody PessoaJuridicaDTO pessoaJuridicaDTO, @PathVariable Long id) {
-        return servicePessoaJuridica.update(pessoaJuridicaDTO, id);
+    public PessoaJuridica update(@RequestBody PessoaJuridicaDTO pessoaJuridicaDTO) {
+        return servicePessoaJuridica.update(pessoaJuridicaDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        servicePessoaJuridica.delete(id);
     }
 }

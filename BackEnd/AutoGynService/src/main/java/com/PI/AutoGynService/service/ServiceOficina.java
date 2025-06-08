@@ -26,9 +26,9 @@ public class ServiceOficina {
         return oficinaRepository.findAll();
     }
 
-    public Oficina update(OficinaDTO oficina, Long id) {
-        Oficina oficina1 = oficinaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("OS não encontrado com o ID: " + id));
+    public Oficina update(OficinaDTO oficina) {
+        Oficina oficina1 = oficinaRepository.findById(oficina.getId())
+                .orElseThrow(() -> new RuntimeException("OS não encontrado com o ID: " + oficina.getId()));
 
         if (oficina.getNome() != null) {
             oficina1.setNome(oficina.getNome());
@@ -41,5 +41,9 @@ public class ServiceOficina {
         }
 
         return oficinaRepository.save(oficina1);
+    }
+
+    public void delete(Long id) {
+        oficinaRepository.deleteById(id);
     }
 }

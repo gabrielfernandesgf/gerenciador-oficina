@@ -35,7 +35,12 @@ public class PessoaFisicaController {
     }
 
     @PutMapping
-    public PessoaFisica update(@RequestBody PessoaFisicaDTO pessoaFisicaDTO, @PathVariable Long id) {
-        return servicePessoaFisica.update(pessoaFisicaDTO, id);
+    public PessoaFisica update(@RequestBody PessoaFisicaDTO pessoaFisicaDTO) {
+        return servicePessoaFisica.update(pessoaFisicaDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        servicePessoaFisica.delete(id);
     }
 }

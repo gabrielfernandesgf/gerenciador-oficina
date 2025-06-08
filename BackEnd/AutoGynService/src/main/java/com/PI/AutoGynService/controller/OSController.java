@@ -35,7 +35,12 @@ public class OSController {
     }
 
     @PutMapping
-    public OS update(@RequestBody OSDTO osdto, @PathVariable Long id) {
-        return serviceOS.update(osdto, id);
+    public OS update(@RequestBody OSDTO osdto) {
+        return serviceOS.update(osdto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        serviceOS.delete(id);
     }
 }

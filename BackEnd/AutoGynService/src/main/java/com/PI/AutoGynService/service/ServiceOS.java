@@ -26,9 +26,9 @@ public class ServiceOS {
         return osRepository.findAll();
     }
 
-    public OS update(OSDTO os, Long id) {
-        OS os1 = osRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("OS não encontrado com o ID: " + id));
+    public OS update(OSDTO os) {
+        OS os1 = osRepository.findById(os.getId())
+                .orElseThrow(() -> new RuntimeException("OS não encontrado com o ID: " + os.getId()));
 
         if (os.getStatus() != null) {
             os1.setStatus(os.getStatus());
@@ -41,5 +41,9 @@ public class ServiceOS {
         }
 
         return osRepository.save(os1);
+    }
+
+    public void delete(Long id) {
+        osRepository.deleteById(id);
     }
 }

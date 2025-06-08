@@ -35,7 +35,12 @@ public class ModeloController {
     }
 
     @PutMapping
-    public Modelo update(@RequestBody ModeloDTO modeloDTO, @PathVariable Long id) {
-        return serviceModelo.update(modeloDTO, id);
+    public Modelo update(@RequestBody ModeloDTO modeloDTO) {
+        return serviceModelo.update(modeloDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        serviceModelo.delete(id);
     }
 }

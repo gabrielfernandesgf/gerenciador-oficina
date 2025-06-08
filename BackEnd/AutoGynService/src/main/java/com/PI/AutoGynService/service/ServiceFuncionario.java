@@ -26,9 +26,9 @@ public class ServiceFuncionario {
         return funcionarioRepository.findAll();
     }
 
-    public Funcionario update(FuncionarioDTO funcionario, Long id){
-        Funcionario funcionario1 = funcionarioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Funcionário não encontrado com o ID: " + id));
+    public Funcionario update(FuncionarioDTO funcionario){
+        Funcionario funcionario1 = funcionarioRepository.findById(funcionario.getId())
+                .orElseThrow(() -> new RuntimeException("Funcionário não encontrado com o ID: " + funcionario.getId()));
 
         if(funcionario.getCpf() != null){
             funcionario1.setCpf(funcionario.getCpf());
@@ -49,5 +49,9 @@ public class ServiceFuncionario {
             funcionario1.setDataSaida(funcionario.getDataSaida());
         }
         return funcionarioRepository.save(funcionario1);
+    }
+
+    public void delete(Long id) {
+        funcionarioRepository.deleteById(id);
     }
 }

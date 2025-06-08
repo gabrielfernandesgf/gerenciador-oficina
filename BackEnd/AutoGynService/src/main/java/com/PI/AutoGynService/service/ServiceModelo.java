@@ -26,9 +26,9 @@ public class ServiceModelo {
         return modeloRepository.findAll();
     }
 
-    public Modelo update(ModeloDTO modelo, Long id){
-        Modelo modelo1 = modeloRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Modelo não encontrado com o ID: " + id));
+    public Modelo update(ModeloDTO modelo){
+        Modelo modelo1 = modeloRepository.findById(modelo.getId())
+                .orElseThrow(() -> new RuntimeException("Modelo não encontrado com o ID: " + modelo.getId()));
 
         if(modelo.getDescricao() != null){
             modelo1.setDescricao(modelo.getDescricao());
@@ -41,5 +41,9 @@ public class ServiceModelo {
         }
 
         return modeloRepository.save(modelo1);
+    }
+
+    public void delete(Long id) {
+        modeloRepository.deleteById(id);
     }
 }

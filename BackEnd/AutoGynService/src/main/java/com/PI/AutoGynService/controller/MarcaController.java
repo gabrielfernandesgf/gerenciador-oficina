@@ -35,7 +35,12 @@ public class MarcaController {
     }
 
     @PutMapping
-    public Marca update(@RequestBody MarcaDTO marcaDTO, @PathVariable Long id) {
-        return serviceMarca.update(marcaDTO, id);
+    public Marca update(@RequestBody MarcaDTO marcaDTO) {
+        return serviceMarca.update(marcaDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        serviceMarca.delete(id);
     }
 }

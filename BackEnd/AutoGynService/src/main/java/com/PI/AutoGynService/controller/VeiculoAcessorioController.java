@@ -35,7 +35,12 @@ public class VeiculoAcessorioController {
     }
 
     @PutMapping
-    public VeiculoAcessorio update(@RequestBody VeiculoAcessorioDTO veiculoAcessorioDTO, @PathVariable Long id) {
-        return serviceVeiculoAcessorio.update(veiculoAcessorioDTO, id);
+    public VeiculoAcessorio update(@RequestBody VeiculoAcessorioDTO veiculoAcessorioDTO) {
+        return serviceVeiculoAcessorio.update(veiculoAcessorioDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        serviceVeiculoAcessorio.delete(id);
     }
 }

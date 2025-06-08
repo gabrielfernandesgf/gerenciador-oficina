@@ -26,9 +26,9 @@ public class ServicePropriedade {
         return propriedadeRepository.findAll();
     }
 
-    public Propriedade update(PropriedadeDTO propriedade, Long id) {
-        Propriedade propriedade1 = propriedadeRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Propriedade não encontrado com o ID: " + id));
+    public Propriedade update(PropriedadeDTO propriedade) {
+        Propriedade propriedade1 = propriedadeRepository.findById(propriedade.getId())
+                .orElseThrow(() -> new RuntimeException("Propriedade não encontrado com o ID: " + propriedade.getId()));
 
         if(propriedade.getCliente() != null){
             propriedade1.setCliente(propriedade.getCliente());
@@ -44,5 +44,9 @@ public class ServicePropriedade {
         }
 
         return propriedadeRepository.save(propriedade1);
+    }
+
+    public void delete(Long id) {
+        propriedadeRepository.deleteById(id);
     }
 }

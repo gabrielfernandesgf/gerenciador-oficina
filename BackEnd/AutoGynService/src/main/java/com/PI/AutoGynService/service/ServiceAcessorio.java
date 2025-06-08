@@ -26,9 +26,9 @@ public class ServiceAcessorio {
         return acessorioRepository.findAll();
     }
 
-    public Acessorio updateAcessorio(AcessorioDTO acessorio, Long id){
-        Acessorio acessorio1 = acessorioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Acessório não encontrado com o ID: " + id));
+    public Acessorio update(AcessorioDTO acessorio){
+        Acessorio acessorio1 = acessorioRepository.findById(acessorio.getId())
+                .orElseThrow(() -> new RuntimeException("Acessório não encontrado com o ID: " + acessorio.getId()));
         if(acessorio.getDescricao() != null){
             acessorio1.setDescricao(acessorio.getDescricao());
         }
@@ -37,6 +37,10 @@ public class ServiceAcessorio {
         }
 
         return acessorioRepository.save(acessorio1);
+    }
+
+    public void delete(Long id) {
+        acessorioRepository.deleteById(id);
     }
 }
 

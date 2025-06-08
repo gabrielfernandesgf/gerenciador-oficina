@@ -35,7 +35,12 @@ public class AcessorioController {
     }
 
     @PutMapping
-    public Acessorio update(@RequestBody AcessorioDTO acessorioDTO, @PathVariable Long id) {
-        return serviceAcessorio.updateAcessorio(acessorioDTO, id);
+    public Acessorio update(@RequestBody AcessorioDTO acessorioDTO) {
+        return serviceAcessorio.update(acessorioDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        serviceAcessorio.delete(id);
     }
 }

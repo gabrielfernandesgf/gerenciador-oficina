@@ -26,9 +26,9 @@ public class ServiceCliente {
         return clienteRepository.findAll();
     }
 
-    public Cliente update(ClienteDTO cliente, Long id){
-        Cliente cliente1 = clienteRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente não encontrado com o ID: " + id));
+    public Cliente update(ClienteDTO cliente){
+        Cliente cliente1 = clienteRepository.findById(cliente.getId())
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado com o ID: " + cliente.getId()));
 
         if(cliente.getCep() != null){
             cliente1.setCep(cliente.getCep());
@@ -47,5 +47,9 @@ public class ServiceCliente {
         }
 
         return clienteRepository.save(cliente1);
+    }
+
+    public void delete(Long id) {
+        clienteRepository.deleteById(id);
     }
 }

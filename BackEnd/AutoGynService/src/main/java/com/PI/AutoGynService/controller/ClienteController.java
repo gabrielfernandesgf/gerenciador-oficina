@@ -35,7 +35,12 @@ public class ClienteController {
     }
 
     @PutMapping
-    public Cliente update(@RequestBody ClienteDTO clienteDTO, @PathVariable Long id) {
-        return serviceCliente.update(clienteDTO, id);
+    public Cliente update(@RequestBody ClienteDTO clienteDTO) {
+        return serviceCliente.update(clienteDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        serviceCliente.delete(id);
     }
 }

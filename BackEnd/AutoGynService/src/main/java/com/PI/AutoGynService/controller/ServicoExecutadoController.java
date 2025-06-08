@@ -35,7 +35,12 @@ public class ServicoExecutadoController {
     }
 
     @PutMapping
-    public ServicoExecutado update(@RequestBody ServicoExecutadoDTO servicoExecutadoDTO, @PathVariable Long id) {
-        return serviceServicoExecutado.update(servicoExecutadoDTO, id);
+    public ServicoExecutado update(@RequestBody ServicoExecutadoDTO servicoExecutadoDTO) {
+        return serviceServicoExecutado.update(servicoExecutadoDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        serviceServicoExecutado.delete(id);
     }
 }

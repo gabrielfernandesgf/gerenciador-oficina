@@ -35,7 +35,12 @@ public class FuncionarioController {
     }
 
     @PutMapping
-    public Funcionario update(@RequestBody FuncionarioDTO funcionarioDTO, @PathVariable Long id) {
-        return serviceFuncionario.update(funcionarioDTO, id);
+    public Funcionario update(@RequestBody FuncionarioDTO funcionarioDTO) {
+        return serviceFuncionario.update(funcionarioDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        serviceFuncionario.delete(id);
     }
 }

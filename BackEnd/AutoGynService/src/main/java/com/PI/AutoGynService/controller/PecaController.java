@@ -35,7 +35,12 @@ public class PecaController {
     }
 
     @PutMapping
-    public Peca update(@RequestBody PecaDTO pecaDTO, @PathVariable Long id) {
-        return servicePeca.update(pecaDTO, id);
+    public Peca update(@RequestBody PecaDTO pecaDTO) {
+        return servicePeca.update(pecaDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        servicePeca.delete(id);
     }
 }

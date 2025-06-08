@@ -35,7 +35,12 @@ public class PropriedadeController {
     }
 
     @PutMapping
-    public Propriedade update(@RequestBody PropriedadeDTO propriedadeDTO, @PathVariable Long id) {
-        return servicePropriedade.update(propriedadeDTO, id);
+    public Propriedade update(@RequestBody PropriedadeDTO propriedadeDTO) {
+        return servicePropriedade.update(propriedadeDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        servicePropriedade.delete(id);
     }
 }

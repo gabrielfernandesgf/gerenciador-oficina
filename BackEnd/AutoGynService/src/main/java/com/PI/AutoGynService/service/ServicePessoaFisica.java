@@ -26,9 +26,9 @@ public class ServicePessoaFisica {
         return pessoaFisicaRepository.findAll();
     }
 
-    public PessoaFisica update(PessoaFisicaDTO pessoaFisica, Long id) {
-        PessoaFisica pessoaFisica1 = pessoaFisicaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Pessoa não encontrada com o ID: " + id));
+    public PessoaFisica update(PessoaFisicaDTO pessoaFisica) {
+        PessoaFisica pessoaFisica1 = pessoaFisicaRepository.findById(pessoaFisica.getId())
+                .orElseThrow(() -> new RuntimeException("Pessoa não encontrada com o ID: " + pessoaFisica.getId()));
 
         if (pessoaFisica.getCpf() != null) {
             pessoaFisica1.setCpf(pessoaFisica.getCpf());
@@ -53,5 +53,9 @@ public class ServicePessoaFisica {
         }
 
         return pessoaFisicaRepository.save(pessoaFisica1);
+    }
+
+    public void delete(Long id) {
+        pessoaFisicaRepository.deleteById(id);
     }
 }

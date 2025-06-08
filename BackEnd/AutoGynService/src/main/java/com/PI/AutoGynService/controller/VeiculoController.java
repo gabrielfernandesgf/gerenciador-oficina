@@ -35,7 +35,12 @@ public class VeiculoController {
     }
 
     @PutMapping
-    public Veiculo update(@RequestBody VeiculoDTO veiculoDTO, @PathVariable String placa) {
-        return serviceVeiculo.update(veiculoDTO, placa);
+    public Veiculo update(@RequestBody VeiculoDTO veiculoDTO) {
+        return serviceVeiculo.update(veiculoDTO);
+    }
+
+    @DeleteMapping("/{placa}")
+    public void delete(@PathVariable String placa) {
+        serviceVeiculo.delete(placa);
     }
 }

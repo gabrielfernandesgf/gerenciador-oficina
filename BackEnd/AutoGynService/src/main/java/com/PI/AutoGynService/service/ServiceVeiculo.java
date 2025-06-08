@@ -26,9 +26,9 @@ public class ServiceVeiculo {
         return veiculoRepository.findAll();
     }
 
-    public Veiculo update(VeiculoDTO veiculo, String placa){
-        Veiculo veiculo1 = veiculoRepository.findByPlaca(placa)
-                .orElseThrow(() -> new RuntimeException("Veiculo não encontrado com a placa: " + placa));
+    public Veiculo update(VeiculoDTO veiculo){
+        Veiculo veiculo1 = veiculoRepository.findByPlaca(veiculo.getPlaca())
+                .orElseThrow(() -> new RuntimeException("Veiculo não encontrado com a placa: " + veiculo.getPlaca()));
 
         if(veiculo.getAnoFabricacao() != 0){
             veiculo1.setAnoFabricacao(veiculo.getAnoFabricacao());
@@ -56,5 +56,9 @@ public class ServiceVeiculo {
         }
 
         return veiculoRepository.save(veiculo1);
+    }
+
+    public void delete(String placa) {
+        veiculoRepository.deleteByPlaca(placa);
     }
 }

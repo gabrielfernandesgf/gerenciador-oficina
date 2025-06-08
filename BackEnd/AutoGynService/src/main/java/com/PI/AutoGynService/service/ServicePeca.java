@@ -26,9 +26,9 @@ public class ServicePeca {
         return pecaRepository.findAll();
     }
 
-    public Peca update(PecaDTO peca, Long id){
-        Peca peca1 = pecaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Peça não encontrada com o ID: " + id));
+    public Peca update(PecaDTO peca){
+        Peca peca1 = pecaRepository.findById(peca.getId())
+                .orElseThrow(() -> new RuntimeException("Peça não encontrada com o ID: " + peca.getId()));
 
         if (peca.getNome() != null) {
             peca1.setNome(peca.getNome());
@@ -47,5 +47,9 @@ public class ServicePeca {
         }
 
         return pecaRepository.save(peca1);
+    }
+
+    public void delete(Long id) {
+        pecaRepository.deleteById(id);
     }
 }

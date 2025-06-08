@@ -35,7 +35,12 @@ public class PecaSubstituirController {
     }
 
     @PutMapping
-    public PecaSubstituir update(@RequestBody PecaSubstituirDTO pecaSubstituirDTO, @PathVariable Long id) {
-        return servicePecaSubstituir.update(pecaSubstituirDTO, id);
+    public PecaSubstituir update(@RequestBody PecaSubstituirDTO pecaSubstituirDTO) {
+        return servicePecaSubstituir.update(pecaSubstituirDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        servicePecaSubstituir.delete(id);
     }
 }
