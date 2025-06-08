@@ -30,13 +30,13 @@ public class OficinaController {
     }
 
     @PostMapping
-    public void save(@RequestBody Oficina oficina) {
-        serviceOficina.save(oficina);
+    public Oficina save(@RequestBody OficinaDTO oficinaDTO) {
+        return serviceOficina.save(oficinaDTO);
     }
 
     @PutMapping
-    public Oficina update(@RequestBody OficinaDTO oficinaDTO) {
-        return serviceOficina.update(oficinaDTO);
+    public Oficina update(@RequestBody Oficina oficina) {
+        return serviceOficina.update(oficina);
     }
 
     @DeleteMapping("/{id}")

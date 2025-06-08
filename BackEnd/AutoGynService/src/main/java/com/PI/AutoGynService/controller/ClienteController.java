@@ -30,13 +30,13 @@ public class ClienteController {
     }
 
     @PostMapping
-    public void save(@RequestBody Cliente cliente) {
-        serviceCliente.save(cliente);
+    public Cliente save(@RequestBody ClienteDTO clienteDTO) {
+        return serviceCliente.save(clienteDTO);
     }
 
     @PutMapping
-    public Cliente update(@RequestBody ClienteDTO clienteDTO) {
-        return serviceCliente.update(clienteDTO);
+    public Cliente update(@RequestBody Cliente cliente) {
+        return serviceCliente.update(cliente);
     }
 
     @DeleteMapping("/{id}")

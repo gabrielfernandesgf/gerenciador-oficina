@@ -4,40 +4,22 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class FuncionarioDTO {
-
-    private Long id;
-
     private String cpf;
-
     private String nome;
-
     private LocalDate dataEntrada;
-
     private LocalDate dataSaida;
-
     private String telefone;
-
     private String email;
 
-    public FuncionarioDTO() {
-    }
+    public FuncionarioDTO() {}
 
-    public FuncionarioDTO(Long id, String cpf, String nome, LocalDate dataEntrada, LocalDate dataSaida, String telefone, String email) {
-        this.id = id;
+    public FuncionarioDTO(String cpf, String nome, LocalDate dataEntrada, LocalDate dataSaida, String telefone, String email) {
         this.cpf = cpf;
         this.nome = nome;
         this.dataEntrada = dataEntrada;
         this.dataSaida = dataSaida;
         this.telefone = telefone;
         this.email = email;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getCpf() {
@@ -93,19 +75,18 @@ public class FuncionarioDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FuncionarioDTO that = (FuncionarioDTO) o;
-        return Objects.equals(id, that.id) && Objects.equals(cpf, that.cpf) && Objects.equals(nome, that.nome) && Objects.equals(dataEntrada, that.dataEntrada) && Objects.equals(dataSaida, that.dataSaida) && Objects.equals(telefone, that.telefone) && Objects.equals(email, that.email);
+        return Objects.equals(cpf, that.cpf) && Objects.equals(nome, that.nome) && Objects.equals(dataEntrada, that.dataEntrada) && Objects.equals(dataSaida, that.dataSaida) && Objects.equals(telefone, that.telefone) && Objects.equals(email, that.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, cpf, nome, dataEntrada, dataSaida, telefone, email);
+        return Objects.hash(cpf, nome, dataEntrada, dataSaida, telefone, email);
     }
 
     @Override
     public String toString() {
-        return "Funcionario{" +
-                "id=" + id +
-                ", cpf='" + cpf + '\'' +
+        return "FuncionarioDTO{" +
+                "cpf='" + cpf + '\'' +
                 ", nome='" + nome + '\'' +
                 ", dataEntrada=" + dataEntrada +
                 ", dataSaida=" + dataSaida +

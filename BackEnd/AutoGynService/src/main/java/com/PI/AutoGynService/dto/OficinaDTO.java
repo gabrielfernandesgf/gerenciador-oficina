@@ -3,31 +3,16 @@ package com.PI.AutoGynService.dto;
 import java.util.Objects;
 
 public class OficinaDTO {
-
-    private Long id;
-
     private String nome;
-
     private String email;
-
     private String endereco;
 
-    public OficinaDTO() {
-    }
+    public OficinaDTO() {}
 
-    public OficinaDTO(Long id, String nome, String email, String endereco) {
-        this.id = id;
+    public OficinaDTO(String nome, String email, String endereco) {
         this.nome = nome;
         this.email = email;
         this.endereco = endereco;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -58,20 +43,19 @@ public class OficinaDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OficinaDTO oficina = (OficinaDTO) o;
-        return Objects.equals(id, oficina.id) && Objects.equals(nome, oficina.nome) && Objects.equals(email, oficina.email) && Objects.equals(endereco, oficina.endereco);
+        OficinaDTO that = (OficinaDTO) o;
+        return Objects.equals(nome, that.nome) && Objects.equals(email, that.email) && Objects.equals(endereco, that.endereco);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, email, endereco);
+        return Objects.hash(nome, email, endereco);
     }
 
     @Override
     public String toString() {
-        return "Oficina{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
+        return "OficinaDTO{" +
+                "nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
                 ", endereco='" + endereco + '\'' +
                 '}';

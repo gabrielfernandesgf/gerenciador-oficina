@@ -13,8 +13,8 @@ public class ServicePessoaJuridica {
     @Autowired
     PessoaJuridicaRepository pessoaJuridicaRepository;
 
-    public void save(PessoaJuridica pessoaJuridica){
-        pessoaJuridicaRepository.save(pessoaJuridica);
+    public List<PessoaJuridica> findAll(){
+        return pessoaJuridicaRepository.findAll();
     }
 
     public PessoaJuridica findById(Long id){
@@ -22,11 +22,29 @@ public class ServicePessoaJuridica {
                 .orElseThrow(() -> new RuntimeException("Pessoa não encontrada com o ID: " + id));
     }
 
-    public List<PessoaJuridica> findAll(){
-        return pessoaJuridicaRepository.findAll();
+    public PessoaJuridica save(PessoaJuridicaDTO pessoaJuridicaDTO){
+        if (pessoaJuridicaDTO.getCnpj() == null || pessoaJuridicaDTO.getCnpj().length() != 14)
+            throw new RuntimeException("CNPJ informado não é válido.");
+        if (pessoaJuridicaDTO.getInscricaoSocial() == null || pessoaJuridicaDTO.getInscricaoSocial().trim().isEmpty())
+            throw new RuntimeException("Informe a inscrição estadual.");
+        if (pessoaJuridicaDTO.getRazaoSocial() == null || pessoaJuridicaDTO.getRazaoSocial().trim().isEmpty())
+            throw new RuntimeException("Informe a razão social.");
+        if (pessoaJuridicaDTO.getNomeResposavel() == null || pessoaJuridicaDTO.getNomeResposavel().trim().isEmpty())
+            throw new RuntimeException("Informe o nome do responsável.");
+        if (pessoaJuridicaDTO.getContatoResponsavel() == null || pessoaJuridicaDTO.getContatoResponsavel().trim().isEmpty())
+            throw new RuntimeException("Informe o contato do responsável.");
+
+        PessoaJuridica pessoaJuridica = new PessoaJuridica();
+        pessoaJuridica.setCnpj(pessoaJuridicaDTO.getCnpj());
+        pessoaJuridica.setInscricaoSocial(pessoaJuridicaDTO.getInscricaoSocial());
+        pessoaJuridica.setRazaoSocial(pessoaJuridicaDTO.getRazaoSocial());
+        pessoaJuridica.setNomeResposavel(pessoaJuridicaDTO.getNomeResposavel());
+        pessoaJuridica.setContatoResponsavel(pessoaJuridicaDTO.getContatoResponsavel());
+
+        return pessoaJuridicaRepository.save(pessoaJuridica);
     }
 
-    public PessoaJuridica update(PessoaJuridicaDTO pessoaJuridica) {
+    public PessoaJuridica update(PessoaJuridica pessoaJuridica) {
         PessoaJuridica pessoaJuridica1 = pessoaJuridicaRepository.findById(pessoaJuridica.getId())
                 .orElseThrow(() -> new RuntimeException("Pessoa não encontrada com o ID: " + pessoaJuridica.getId()));
 

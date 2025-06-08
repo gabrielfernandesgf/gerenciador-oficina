@@ -1,8 +1,12 @@
 package com.PI.AutoGynService.service;
 
 import com.PI.AutoGynService.dto.VeiculoAcessorioDTO;
+import com.PI.AutoGynService.entity.Acessorio;
+import com.PI.AutoGynService.entity.Veiculo;
 import com.PI.AutoGynService.entity.VeiculoAcessorio;
+import com.PI.AutoGynService.repository.AcessorioRepository;
 import com.PI.AutoGynService.repository.VeiculoAcessorioRepository;
+import com.PI.AutoGynService.repository.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +17,14 @@ public class ServiceVeiculoAcessorio {
     @Autowired
     VeiculoAcessorioRepository veiculoAcessorioRepository;
 
-    public void save(VeiculoAcessorio veiculoAcessorio){
-        veiculoAcessorioRepository.save(veiculoAcessorio);
+    @Autowired
+    VeiculoRepository veiculoRepository;
+
+    @Autowired
+    AcessorioRepository acessorioRepository;
+
+    public List<VeiculoAcessorio> findAll(){
+        return veiculoAcessorioRepository.findAll();
     }
 
     public VeiculoAcessorio findById(Long id){
@@ -22,11 +32,21 @@ public class ServiceVeiculoAcessorio {
                 .orElseThrow(() -> new RuntimeException("Veiculo|Acessorio não encontrado com a placa: " + id));
     }
 
-    public List<VeiculoAcessorio> findAll(){
-        return veiculoAcessorioRepository.findAll();
+    public VeiculoAcessorio save(VeiculoAcessorioDTO veiculoAcessorioDTO){
+        Acessorio acessorio = acessorioRepository.findById(veiculoAcessorioDTO.getAcessorioId())
+                .orElseThrow(() -> new RuntimeException("Acessório não encontrado com o ID: " + veiculoAcessorioDTO.getAcessorioId()));
+
+        Veiculo veiculo = veiculoRepository.findByPlaca(veiculoAcessorioDTO.getVeiculoPlaca())
+                .orElseThrow(() -> new RuntimeException("Veículo não encontrado com a placa: " + veiculoAcessorioDTO.getVeiculoPlaca()));
+
+        VeiculoAcessorio veiculoAcessorio = new VeiculoAcessorio();
+        veiculoAcessorio.setAcessorio(acessorio);
+        veiculoAcessorio.setVeiculo(veiculo);
+
+        return veiculoAcessorioRepository.save(veiculoAcessorio);
     }
 
-    public VeiculoAcessorio update(VeiculoAcessorioDTO veiculoAcessorio){
+    public VeiculoAcessorio update(VeiculoAcessorio veiculoAcessorio){
         VeiculoAcessorio veiculoAcessorio1 = veiculoAcessorioRepository.findById(veiculoAcessorio.getId())
                 .orElseThrow(() -> new RuntimeException("Veiculo|Acessorio não encontrado com a placa: " + veiculoAcessorio.getId()));
 

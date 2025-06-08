@@ -30,13 +30,13 @@ public class OSController {
     }
 
     @PostMapping
-    public void save(@RequestBody OS os) {
-        serviceOS.save(os);
+    public OS save(@RequestBody OSDTO osDTO) {
+        return serviceOS.save(osDTO);
     }
 
     @PutMapping
-    public OS update(@RequestBody OSDTO osdto) {
-        return serviceOS.update(osdto);
+    public OS update(@RequestBody OS os) {
+        return serviceOS.update(os);
     }
 
     @DeleteMapping("/{id}")

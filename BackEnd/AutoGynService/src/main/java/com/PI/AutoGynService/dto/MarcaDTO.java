@@ -3,28 +3,15 @@ package com.PI.AutoGynService.dto;
 import java.util.Objects;
 
 public class MarcaDTO {
-
-    private Long id;
-
     private String nome;
-
     private String descricao;
 
     public MarcaDTO() {
     }
 
-    public MarcaDTO(Long id, String nome, String descricao) {
-        this.id = id;
+    public MarcaDTO(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -47,20 +34,19 @@ public class MarcaDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MarcaDTO marca = (MarcaDTO) o;
-        return Objects.equals(id, marca.id) && Objects.equals(nome, marca.nome) && Objects.equals(descricao, marca.descricao);
+        MarcaDTO marcaDTO = (MarcaDTO) o;
+        return Objects.equals(nome, marcaDTO.nome) && Objects.equals(descricao, marcaDTO.descricao);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, descricao);
+        return Objects.hash(nome, descricao);
     }
 
     @Override
     public String toString() {
-        return "Marca{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
+        return "MarcaDTO{" +
+                "nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
                 '}';
     }

@@ -1,31 +1,16 @@
 package com.PI.AutoGynService.dto;
 
-
 import java.util.Objects;
 
 public class AcessorioDTO {
-
-    private Long id;
-
     private String nome;
-
     private String descricao;
 
-    public AcessorioDTO() {
-    }
+    public AcessorioDTO() {}
 
-    public AcessorioDTO(Long id, String nome, String descricao) {
-        this.id = id;
+    public AcessorioDTO(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -48,20 +33,19 @@ public class AcessorioDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AcessorioDTO acessorio = (AcessorioDTO) o;
-        return Objects.equals(id, acessorio.id) && Objects.equals(nome, acessorio.nome) && Objects.equals(descricao, acessorio.descricao);
+        AcessorioDTO that = (AcessorioDTO) o;
+        return Objects.equals(nome, that.nome) && Objects.equals(descricao, that.descricao);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, descricao);
+        return Objects.hash(nome, descricao);
     }
 
     @Override
     public String toString() {
-        return "Acessorio{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
+        return "AcessorioDTO{" +
+                "nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
                 '}';
     }

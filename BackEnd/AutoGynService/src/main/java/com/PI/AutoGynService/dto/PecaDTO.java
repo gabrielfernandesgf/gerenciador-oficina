@@ -3,37 +3,20 @@ package com.PI.AutoGynService.dto;
 import java.util.Objects;
 
 public class PecaDTO {
-
-    private Long id;
-
     private String nome;
-
     private String fabricante;
-
     private String volumeTamanho;
-
     private Integer quantidadeEstoque;
-
     private Double valorUnitario;
 
-    public PecaDTO() {
-    }
+    public PecaDTO() {}
 
-    public PecaDTO(Long id, String nome, String fabricante, String volumeTamanho, Integer quantidadeEstoque, Double valorUnitario) {
-        this.id = id;
+    public PecaDTO(String nome, String fabricante, String volumeTamanho, Integer quantidadeEstoque, Double valorUnitario) {
         this.nome = nome;
         this.fabricante = fabricante;
         this.volumeTamanho = volumeTamanho;
         this.quantidadeEstoque = quantidadeEstoque;
         this.valorUnitario = valorUnitario;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -80,20 +63,19 @@ public class PecaDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PecaDTO peca = (PecaDTO) o;
-        return Objects.equals(id, peca.id) && Objects.equals(nome, peca.nome) && Objects.equals(fabricante, peca.fabricante) && Objects.equals(volumeTamanho, peca.volumeTamanho) && Objects.equals(quantidadeEstoque, peca.quantidadeEstoque) && Objects.equals(valorUnitario, peca.valorUnitario);
+        PecaDTO pecaDTO = (PecaDTO) o;
+        return Objects.equals(nome, pecaDTO.nome) && Objects.equals(fabricante, pecaDTO.fabricante) && Objects.equals(volumeTamanho, pecaDTO.volumeTamanho) && Objects.equals(quantidadeEstoque, pecaDTO.quantidadeEstoque) && Objects.equals(valorUnitario, pecaDTO.valorUnitario);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, fabricante, volumeTamanho, quantidadeEstoque, valorUnitario);
+        return Objects.hash(nome, fabricante, volumeTamanho, quantidadeEstoque, valorUnitario);
     }
 
     @Override
     public String toString() {
-        return "Peca{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
+        return "PecaDTO{" +
+                "nome='" + nome + '\'' +
                 ", fabricante='" + fabricante + '\'' +
                 ", volumeTamanho='" + volumeTamanho + '\'' +
                 ", quantidadeEstoque=" + quantidadeEstoque +

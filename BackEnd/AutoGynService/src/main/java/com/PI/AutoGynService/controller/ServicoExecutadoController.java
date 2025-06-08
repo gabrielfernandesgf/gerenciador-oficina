@@ -30,13 +30,13 @@ public class ServicoExecutadoController {
     }
 
     @PostMapping
-    public void save(@RequestBody ServicoExecutado servicoExecutado) {
-        serviceServicoExecutado.save(servicoExecutado);
+    public ServicoExecutado save(@RequestBody ServicoExecutadoDTO servicoExecutadoDTO) {
+        return serviceServicoExecutado.save(servicoExecutadoDTO);
     }
 
     @PutMapping
-    public ServicoExecutado update(@RequestBody ServicoExecutadoDTO servicoExecutadoDTO) {
-        return serviceServicoExecutado.update(servicoExecutadoDTO);
+    public ServicoExecutado update(@RequestBody ServicoExecutado servicoExecutado) {
+        return serviceServicoExecutado.update(servicoExecutado);
     }
 
     @DeleteMapping("/{id}")

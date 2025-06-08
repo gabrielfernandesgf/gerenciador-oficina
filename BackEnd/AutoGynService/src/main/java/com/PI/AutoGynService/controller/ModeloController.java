@@ -30,13 +30,13 @@ public class ModeloController {
     }
 
     @PostMapping
-    public void save(@RequestBody Modelo modelo) {
-        serviceModelo.save(modelo);
+    public Modelo save(@RequestBody ModeloDTO modeloDTO) {
+        return serviceModelo.save(modeloDTO);
     }
 
     @PutMapping
-    public Modelo update(@RequestBody ModeloDTO modeloDTO) {
-        return serviceModelo.update(modeloDTO);
+    public Modelo update(@RequestBody Modelo modelo) {
+        return serviceModelo.update(modelo);
     }
 
     @DeleteMapping("/{id}")

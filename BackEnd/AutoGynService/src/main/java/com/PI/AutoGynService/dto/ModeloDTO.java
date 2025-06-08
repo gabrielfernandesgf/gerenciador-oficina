@@ -5,31 +5,16 @@ import com.PI.AutoGynService.entity.Marca;
 import java.util.Objects;
 
 public class ModeloDTO {
-
-    private Long id;
-
     private String nome;
-
     private String descricao;
+    private Long marcaId;
 
-    private Marca marca;
+    public ModeloDTO() {}
 
-    public ModeloDTO() {
-    }
-
-    public ModeloDTO(Long id, String nome, String descricao, Marca marca) {
-        this.id = id;
+    public ModeloDTO(String nome, String descricao, Long marcaId) {
         this.nome = nome;
         this.descricao = descricao;
-        this.marca = marca;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.marcaId = marcaId;
     }
 
     public String getNome() {
@@ -48,34 +33,33 @@ public class ModeloDTO {
         this.descricao = descricao;
     }
 
-    public Marca getMarca() {
-        return marca;
+    public Long getMarcaId() {
+        return marcaId;
     }
 
-    public void setMarca(Marca marca) {
-        this.marca = marca;
+    public void setMarcaId(Long marcaId) {
+        this.marcaId = marcaId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ModeloDTO modelo = (ModeloDTO) o;
-        return Objects.equals(id, modelo.id) && Objects.equals(nome, modelo.nome) && Objects.equals(descricao, modelo.descricao) && Objects.equals(marca, modelo.marca);
+        ModeloDTO modeloDTO = (ModeloDTO) o;
+        return Objects.equals(nome, modeloDTO.nome) && Objects.equals(descricao, modeloDTO.descricao) && Objects.equals(marcaId, modeloDTO.marcaId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, descricao, marca);
+        return Objects.hash(nome, descricao, marcaId);
     }
 
     @Override
     public String toString() {
-        return "Modelo{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
+        return "ModeloDTO{" +
+                "nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
-                ", marca=" + marca +
+                ", marcaId=" + marcaId +
                 '}';
     }
 }

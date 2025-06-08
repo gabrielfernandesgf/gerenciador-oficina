@@ -13,8 +13,8 @@ public class ServiceMarca {
     @Autowired
     MarcaRepository marcaRepository;
 
-    public void save(Marca marca){
-        marcaRepository.save(marca);
+    public List<Marca> findAll(){
+        return marcaRepository.findAll();
     }
 
     public Marca findById(Long id){
@@ -22,11 +22,20 @@ public class ServiceMarca {
                 .orElseThrow(() -> new RuntimeException("Marca não encontrada com o ID: " + id));
     }
 
-    public List<Marca> findAll(){
-        return marcaRepository.findAll();
+    public Marca save(MarcaDTO marcaDTO){
+        if (marcaDTO.getNome() == null || marcaDTO.getNome().trim().isEmpty())
+            throw new RuntimeException("Nome é obrigatório.");
+        if (marcaDTO.getDescricao() == null || marcaDTO.getDescricao().trim().isEmpty())
+            throw new RuntimeException("Descrição é obrigatória.");
+
+        Marca marca = new Marca();
+        marca.setNome(marcaDTO.getNome());
+        marca.setDescricao(marcaDTO.getDescricao());
+
+        return marcaRepository.save(marca);
     }
 
-    public Marca update(MarcaDTO marca){
+    public Marca update(Marca marca){
         Marca marca1 = marcaRepository.findById(marca.getId())
                 .orElseThrow(() -> new RuntimeException("Marca não encontrada com o ID: " + marca.getId()));
 
