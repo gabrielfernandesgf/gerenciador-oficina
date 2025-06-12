@@ -29,9 +29,9 @@ public class ServicePeca {
             throw new RuntimeException("Fabricante é obrigatório.");
         if (pecaDTO.getVolumeTamanho() == null || pecaDTO.getVolumeTamanho().trim().isEmpty())
             throw new RuntimeException("Informe o volume|tamanho da peça.");
-        if (pecaDTO.getValorUnitario() >= 0)
+        if (pecaDTO.getValorUnitario() <= 0)
             throw new RuntimeException("Valor unitário é inválido.");
-        if (pecaDTO.getQuantidadeEstoque() > 0)
+        if (pecaDTO.getQuantidadeEstoque() < 0)
             throw new RuntimeException("Quantidade em estoque é inválida.");
 
         Peca peca = new Peca();
