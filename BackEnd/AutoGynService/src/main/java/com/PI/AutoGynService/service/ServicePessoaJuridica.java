@@ -2,6 +2,7 @@ package com.PI.AutoGynService.service;
 
 import com.PI.AutoGynService.dto.PessoaJuridicaDTO;
 import com.PI.AutoGynService.entity.PessoaJuridica;
+import com.PI.AutoGynService.handlingcliente.ClienteFactoryProducer;
 import com.PI.AutoGynService.repository.PessoaJuridicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,10 @@ public class ServicePessoaJuridica {
     }
 
     public PessoaJuridica save(PessoaJuridicaDTO pessoaJuridicaDTO){
-        if (pessoaJuridicaDTO.getCnpj() == null || pessoaJuridicaDTO.getCnpj().length() != 14)
-            throw new RuntimeException("CNPJ informado não é válido.");
+        if (pessoaJuridicaDTO.getCnpj() == null)
+            throw new RuntimeException("CNPJ é obrigatório.");
+        if(!validarCpfComFormato(pessoaJuridicaDTO.getCnpj()))
+            throw new RuntimeException("CNPJ inválido.");
         if (pessoaJuridicaDTO.getInscricaoSocial() == null || pessoaJuridicaDTO.getInscricaoSocial().trim().isEmpty())
             throw new RuntimeException("Informe a inscrição estadual.");
         if (pessoaJuridicaDTO.getRazaoSocial() == null || pessoaJuridicaDTO.getRazaoSocial().trim().isEmpty())
@@ -34,7 +37,7 @@ public class ServicePessoaJuridica {
         if (pessoaJuridicaDTO.getContatoResponsavel() == null || pessoaJuridicaDTO.getContatoResponsavel().trim().isEmpty())
             throw new RuntimeException("Informe o contato do responsável.");
 
-        PessoaJuridica pessoaJuridica = new PessoaJuridica();
+        PessoaJuridica pessoaJuridica = (PessoaJuridica) ClienteFactoryProducer.getFactory("pj").criarCliente();
         pessoaJuridica.setCnpj(pessoaJuridicaDTO.getCnpj());
         pessoaJuridica.setInscricaoSocial(pessoaJuridicaDTO.getInscricaoSocial());
         pessoaJuridica.setRazaoSocial(pessoaJuridicaDTO.getRazaoSocial());
@@ -85,5 +88,17 @@ public class ServicePessoaJuridica {
 
     public void delete(Long id) {
         pessoaJuridicaRepository.deleteById(id);
+    }
+
+    public boolean validarCpfComFormato(String cnpj) {
+
+        cnpj = cnpj.trim();
+
+        if (!cnpj.matches("\\d{14}")) {
+            return false;
+
+        } else {
+            return true;
+        }
     }
 }

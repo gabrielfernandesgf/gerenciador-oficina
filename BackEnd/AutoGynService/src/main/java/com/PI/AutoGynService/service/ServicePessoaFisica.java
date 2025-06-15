@@ -2,6 +2,7 @@ package com.PI.AutoGynService.service;
 
 import com.PI.AutoGynService.dto.PessoaFisicaDTO;
 import com.PI.AutoGynService.entity.PessoaFisica;
+import com.PI.AutoGynService.handlingcliente.ClienteFactoryProducer;
 import com.PI.AutoGynService.repository.PessoaFisicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ServicePessoaFisica {
+public class
+ServicePessoaFisica {
     @Autowired
     PessoaFisicaRepository pessoaFisicaRepository;
 
@@ -23,12 +25,14 @@ public class ServicePessoaFisica {
     }
 
     public PessoaFisica save(PessoaFisicaDTO pessoaFisicaDTO){
-        if (pessoaFisicaDTO.getCpf() == null || pessoaFisicaDTO.getCpf().length() != 11)
+        if (pessoaFisicaDTO.getCpf() == null)
+            throw new RuntimeException("Precisa entrar com CPF.");
+        if (!validarCpfComFormato(pessoaFisicaDTO.getCpf()))
             throw new RuntimeException("CPF inválido.");
         if (pessoaFisicaDTO.getDataDeNascimento() == null || pessoaFisicaDTO.getDataDeNascimento().toString().trim().isEmpty())
             throw new RuntimeException("Data de nascimento inválida");
 
-        PessoaFisica pessoaFisica = new PessoaFisica();
+        PessoaFisica pessoaFisica = (PessoaFisica) ClienteFactoryProducer.getFactory("pf").criarCliente();
         pessoaFisica.setCpf(pessoaFisicaDTO.getCpf());
         pessoaFisica.setDataDeNascimento(pessoaFisicaDTO.getDataDeNascimento());
 
@@ -66,5 +70,17 @@ public class ServicePessoaFisica {
 
     public void delete(Long id) {
         pessoaFisicaRepository.deleteById(id);
+    }
+
+    public boolean validarCpfComFormato(String cpf) {
+
+        cpf = cpf.trim();
+
+        if (!cpf.matches("\\d{11}")) {
+            return false;
+
+        } else {
+            return true;
+        }
     }
 }
