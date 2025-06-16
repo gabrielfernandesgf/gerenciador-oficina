@@ -22,7 +22,7 @@ public class OS {
     @Column(name = "dataFim", nullable = false)
     private LocalDate dataFim;
 
-    @Column(name = "valoTotal", nullable = false)
+    @Column(name = "valorTotal", nullable = false)
     private Double valorTotal;
 
     @Column(name = "valorPago", nullable = false)
