@@ -29,6 +29,9 @@ public class ServiceServicoExecutado {
     @Autowired
     FuncionarioRepository funcionarioRepository;
 
+    @Autowired
+    ServiceOS serviceOS;
+
     public List<ServicoExecutado> findAll() {
         return servicoExecutadoRepository.findAll();
     }
@@ -70,6 +73,8 @@ public class ServiceServicoExecutado {
         servicoExecutado.setFuncionario(funcionario);
         servicoExecutado.setServico(servico);
 
+        serviceOS.recalcularValorTotal(servicoExecutadoDTO.getOsId());
+
         return servicoExecutadoRepository.save(servicoExecutado);
     }
 
@@ -104,6 +109,8 @@ public class ServiceServicoExecutado {
         if (servicoExecutado.getValorUnitario() != null) {
             servicoExecutado1.setValorUnitario(servicoExecutado.getValorUnitario());
         }
+
+        serviceOS.recalcularValorTotal(servicoExecutado.getOs().getId());
 
         return servicoExecutadoRepository.save(servicoExecutado1);
     }

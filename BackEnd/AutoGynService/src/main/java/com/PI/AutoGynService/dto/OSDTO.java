@@ -10,17 +10,15 @@ public class OSDTO {
     private Status status;
     private LocalDate dataInicio;
     private LocalDate dataFim;
-    private Double valorTotal;
     private Double valorPago;
     private String placaVeiculo;
 
     public OSDTO() {}
 
-    public OSDTO(Status status, LocalDate dataInicio, LocalDate dataFim, Double valorTotal, Double valorPago, String placaVeiculo) {
+    public OSDTO(Status status, LocalDate dataInicio, LocalDate dataFim, Double valorPago, String placaVeiculo) {
         this.status = status;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
-        this.valorTotal = valorTotal;
         this.valorPago = valorPago;
         this.placaVeiculo = placaVeiculo;
     }
@@ -49,14 +47,6 @@ public class OSDTO {
         this.dataFim = dataFim;
     }
 
-    public Double getValorTotal() {
-        return valorTotal;
-    }
-
-    public void setValorTotal(Double valorTotal) {
-        this.valorTotal = valorTotal;
-    }
-
     public Double getValorPago() {
         return valorPago;
     }
@@ -78,12 +68,12 @@ public class OSDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OSDTO osdto = (OSDTO) o;
-        return status == osdto.status && Objects.equals(dataInicio, osdto.dataInicio) && Objects.equals(dataFim, osdto.dataFim) && Objects.equals(valorTotal, osdto.valorTotal) && Objects.equals(valorPago, osdto.valorPago) && Objects.equals(placaVeiculo, osdto.placaVeiculo);
+        return status == osdto.status && Objects.equals(dataInicio, osdto.dataInicio) && Objects.equals(dataFim, osdto.dataFim) && Objects.equals(valorPago, osdto.valorPago) && Objects.equals(placaVeiculo, osdto.placaVeiculo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(status, dataInicio, dataFim, valorTotal, valorPago, placaVeiculo);
+        return Objects.hash(status, dataInicio, dataFim, valorPago, placaVeiculo);
     }
 
     @Override
@@ -92,7 +82,6 @@ public class OSDTO {
                 "status=" + status +
                 ", dataInicio=" + dataInicio +
                 ", dataFim=" + dataFim +
-                ", valorTotal=" + valorTotal +
                 ", valorPago=" + valorPago +
                 ", placaVeiculo='" + placaVeiculo + '\'' +
                 '}';
