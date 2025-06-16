@@ -1,5 +1,6 @@
 package com.PI.AutoGynService.service;
 
+import com.PI.AutoGynService.config.CustomLogger;
 import com.PI.AutoGynService.dto.OSDTO;
 import com.PI.AutoGynService.entity.OS;
 import com.PI.AutoGynService.entity.Veiculo;
@@ -50,6 +51,8 @@ public class ServiceOS {
         os.setValorPago(osDTO.getValorPago());
         os.setVeiculo(veiculo);
 
+
+        CustomLogger.getInstance().log("Ordem de serviço criada");
         return osRepository.save(os);
     }
 
