@@ -4,10 +4,15 @@ import com.PI.AutoGynService.config.CustomLogger;
 import com.PI.AutoGynService.dto.OSDTO;
 import com.PI.AutoGynService.entity.OS;
 import com.PI.AutoGynService.entity.Veiculo;
+import com.PI.AutoGynService.entity.PecaSubstituir;
+import com.PI.AutoGynService.entity.ServicoExecutado;
 import com.PI.AutoGynService.repository.OSRepository;
+import com.PI.AutoGynService.repository.PecaSubstituirRepository;
+import com.PI.AutoGynService.repository.ServicoExecutadoRepository;
 import com.PI.AutoGynService.repository.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.PI.AutoGynService.entity.Status;
 
 import java.util.List;
 
@@ -19,6 +24,12 @@ public class ServiceOS {
     @Autowired
     VeiculoRepository veiculoRepository;
 
+    @Autowired
+    private PecaSubstituirRepository pecaSubstituirRepository;
+
+    @Autowired
+    private ServicoExecutadoRepository servicoExecutadoRepository;
+
     public List<OS> findAll(){
         return osRepository.findAll();
     }
@@ -28,6 +39,14 @@ public class ServiceOS {
                 .orElseThrow(() -> new RuntimeException("OS não encontrada com o ID: " + id));
     }
 
+    public List<OS> findByPlacaVeiculo(String placaVeiculo) {
+        return osRepository.findByVeiculoPlaca(placaVeiculo);
+    }
+
+    public List<OS> findByStatus(Status status) {
+        return osRepository.findByStatus(status);
+    }
+
     public OS save(OSDTO osDTO){
         if (osDTO.getStatus() == null)
             throw new RuntimeException("Informe o status da OS.");
@@ -35,8 +54,6 @@ public class ServiceOS {
             throw new RuntimeException("Informe a data de início.");
         if (osDTO.getDataFim() == null || osDTO.getDataFim().toString().trim().isEmpty())
             throw new RuntimeException("Informe a data de finalização.");
-        if (osDTO.getValorTotal() <= 0)
-            throw new RuntimeException("Valor total não informado.");
         if (osDTO.getValorPago() <= 0)
             throw new RuntimeException("Valor pago não informado.");
 
@@ -47,7 +64,6 @@ public class ServiceOS {
         os.setStatus(osDTO.getStatus());
         os.setDataInicio(osDTO.getDataInicio());
         os.setDataFim(osDTO.getDataFim());
-        os.setValorTotal(osDTO.getValorTotal());
         os.setValorPago(osDTO.getValorPago());
         os.setVeiculo(veiculo);
 
@@ -75,5 +91,23 @@ public class ServiceOS {
 
     public void delete(Long id) {
         osRepository.deleteById(id);
+    }
+
+    public void recalcularValorTotal(Long osId) {
+        OS os = osRepository.findById(osId)
+                .orElseThrow(() -> new RuntimeException("OS não encontrada com o ID: " + osId));
+
+        // Soma total das peças substituídas
+        double totalPecas = pecaSubstituirRepository.findByOsId(osId).stream()
+                .mapToDouble(PecaSubstituir::getValorTotal)
+                .sum();
+
+        // Soma total dos serviços executados
+        double totalServicos = servicoExecutadoRepository.findByOsId(osId).stream()
+                .mapToDouble(ServicoExecutado::getValorTotal)
+                .sum();
+
+        os.setValorTotal(totalPecas + totalServicos);
+        osRepository.save(os);
     }
 }

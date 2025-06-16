@@ -23,6 +23,9 @@ public class ServicePecaSubstituir {
     @Autowired
     OSRepository osRepository;
 
+    @Autowired
+    ServiceOS serviceOS;
+
     public List<PecaSubstituir> findAll(){
         return pecaSubstituirRepository.findAll();
     }
@@ -54,6 +57,8 @@ public class ServicePecaSubstituir {
         pecaSubstituir.setPeca(peca);
         pecaSubstituir.setOs(os);
 
+        serviceOS.recalcularValorTotal(pecaSubstituirDTO.getOsId());
+
         return pecaSubstituirRepository.save(pecaSubstituir);
     }
 
@@ -79,6 +84,8 @@ public class ServicePecaSubstituir {
         if (pecaSubstituir.getValorTotal() != null) {
             pecaSubstituir1.setValorTotal(pecaSubstituir.getValorTotal());
         }
+
+        serviceOS.recalcularValorTotal(pecaSubstituir.getOs().getId());
 
         return pecaSubstituirRepository.save(pecaSubstituir1);
     }

@@ -3,6 +3,8 @@ package com.PI.AutoGynService.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -30,10 +32,16 @@ public class OS {
     @JoinColumn(name = "placaVeiculo")
     private Veiculo veiculo;
 
+    @OneToMany(mappedBy = "os", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PecaSubstituir> pecasSubstituir = new ArrayList<>();
+
+    @OneToMany(mappedBy = "os", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ServicoExecutado> servicosExecutados = new ArrayList<>();
+
     public OS() {
     }
 
-    public OS(Long id, Status status, LocalDate dataInicio, LocalDate dataFim, Double valorTotal, Double valorPago, Veiculo veiculo) {
+    public OS(Long id, Status status, LocalDate dataInicio, LocalDate dataFim, Double valorTotal, Double valorPago, Veiculo veiculo, List<PecaSubstituir> pecasSubstituir, List<ServicoExecutado> servicosExecutados) {
         this.id = id;
         this.status = status;
         this.dataInicio = dataInicio;
@@ -41,6 +49,8 @@ public class OS {
         this.valorTotal = valorTotal;
         this.valorPago = valorPago;
         this.veiculo = veiculo;
+        this.pecasSubstituir = pecasSubstituir;
+        this.servicosExecutados = servicosExecutados;
     }
 
     public Long getId() {
@@ -99,21 +109,38 @@ public class OS {
         this.veiculo = veiculo;
     }
 
+    public List<PecaSubstituir> getPecasSubstituir() {
+        return pecasSubstituir;
+    }
+
+    public void setPecasSubstituir(List<PecaSubstituir> pecasSubstituir) {
+        this.pecasSubstituir = pecasSubstituir;
+    }
+
+    public List<ServicoExecutado> getServicosExecutados() {
+        return servicosExecutados;
+    }
+
+    public void setServicosExecutados(List<ServicoExecutado> servicosExecutados) {
+        this.servicosExecutados = servicosExecutados;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OS os = (OS) o;
-        return Objects.equals(id, os.id) && status == os.status && Objects.equals(dataInicio, os.dataInicio) && Objects.equals(dataFim, os.dataFim) && Objects.equals(valorTotal, os.valorTotal) && Objects.equals(valorPago, os.valorPago) && Objects.equals(veiculo, os.veiculo);
+        return Objects.equals(id, os.id) && status == os.status && Objects.equals(dataInicio, os.dataInicio) && Objects.equals(dataFim, os.dataFim) && Objects.equals(valorTotal, os.valorTotal) && Objects.equals(valorPago, os.valorPago) && Objects.equals(veiculo, os.veiculo) && Objects.equals(pecasSubstituir, os.pecasSubstituir) && Objects.equals(servicosExecutados, os.servicosExecutados);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, status, dataInicio, dataFim, valorTotal, valorPago, veiculo);
+        return Objects.hash(id, status, dataInicio, dataFim, valorTotal, valorPago, veiculo, pecasSubstituir, servicosExecutados);
     }
 
     @Override
-    public String toString() {
+    public String
+    toString() {
         return "OS{" +
                 "id=" + id +
                 ", status=" + status +
@@ -122,6 +149,8 @@ public class OS {
                 ", valorTotal=" + valorTotal +
                 ", valorPago=" + valorPago +
                 ", veiculo=" + veiculo +
+                ", pecasSubstituir=" + pecasSubstituir +
+                ", servicosExecutados=" + servicosExecutados +
                 '}';
     }
 }
