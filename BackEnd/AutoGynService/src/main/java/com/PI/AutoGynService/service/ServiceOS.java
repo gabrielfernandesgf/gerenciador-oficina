@@ -1,5 +1,6 @@
 package com.PI.AutoGynService.service;
 
+import com.PI.AutoGynService.config.CustomLogger;
 import com.PI.AutoGynService.dto.OSDTO;
 import com.PI.AutoGynService.dto.PecaSubstituirDTO;
 import com.PI.AutoGynService.dto.ServicoExecutadoDTO;

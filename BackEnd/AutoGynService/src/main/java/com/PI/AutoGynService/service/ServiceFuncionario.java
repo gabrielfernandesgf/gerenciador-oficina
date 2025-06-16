@@ -4,7 +4,9 @@ import com.PI.AutoGynService.dto.FuncionarioDTO;
 import com.PI.AutoGynService.entity.Funcionario;
 import com.PI.AutoGynService.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -27,6 +29,8 @@ public class ServiceFuncionario {
             throw new RuntimeException("Nome é obrigatório.");
         if (funcionarioDTO.getCpf() == null || funcionarioDTO.getCpf().trim().isEmpty())
             throw new RuntimeException("CPF é obrigatório.");
+        if(validarCpfComFormato(funcionarioDTO.getCpf()))
+            throw new RuntimeException("CPF inválido.");
         if (funcionarioDTO.getEmail() == null || funcionarioDTO.getEmail().trim().isEmpty())
             throw new RuntimeException("Email é obrigatório.");
         if (funcionarioDTO.getTelefone() == null || funcionarioDTO.getTelefone().trim().isEmpty())
@@ -72,5 +76,17 @@ public class ServiceFuncionario {
 
     public void delete(Long id) {
         funcionarioRepository.deleteById(id);
+    }
+
+    public boolean validarCpfComFormato(String cpf) {
+
+        cpf = cpf.trim();
+
+        if (!cpf.matches("\\d{11}")) {
+            return false;
+
+        } else {
+            return true;
+        }
     }
 }

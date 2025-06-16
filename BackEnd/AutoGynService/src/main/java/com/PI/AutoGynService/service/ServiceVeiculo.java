@@ -40,6 +40,10 @@ public class ServiceVeiculo {
             throw new RuntimeException("Ano de modelo inválido.");
         if (veiculoDTO.getQuilometragem() < 0)
             throw new RuntimeException("Quilometragem inválida");
+        if(!validarPlaca(veiculoDTO.getPlaca()))
+            throw new RuntimeException("Placa invalida");
+
+
 
         Modelo modelo = modeloRepository.findById(veiculoDTO.getModeloID())
                 .orElseThrow(() -> new RuntimeException("Modelo não encontrado com o ID: " + veiculoDTO.getModeloID()));
@@ -91,5 +95,22 @@ public class ServiceVeiculo {
 
     public void delete(String placa) {
         veiculoRepository.deleteByPlaca(placa);
+    }
+
+    public static boolean validarPlaca(String placa) {
+
+        placa = placa.trim().toUpperCase();
+
+        if (placa.length() != 7) {
+            return false;
+        }
+
+        // Regex para formato antigo: 3 letras + 4 números
+        String regexAntigo = "^[A-Z]{3}[0-9]{4}$";
+
+        // Regex para formato Mercosul: 3 letras + 1 número + 1 letra + 2 números
+        String regexMercosul = "^[A-Z]{3}[0-9][A-Z][0-9]{2}$";
+
+        return placa.matches(regexAntigo) || placa.matches(regexMercosul);
     }
 }
